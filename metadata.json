@@ -1,0 +1,6 @@
+{
+  "name": "Blocksmith",
+  "description": "Blocksmith workspace for Roblox Studio with collapsible sidebar, projects, chat sections, and live appearance customization.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
