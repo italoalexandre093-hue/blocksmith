@@ -3550,6 +3550,34 @@ body[data-not-sent] > #vis-container ~ #not-sent {
 .app .install-prog.done .install-prog-fill::after{animation:none;opacity:0}
 .app .install-prog.done .install-prog-stage{color:#4caf7a}
 .app .install-status{font-size:.95em;color:#4caf7a;margin-top:10px;min-height:1em}
+
+.app .cli-login{display:none;flex-direction:column;align-items:center;text-align:center;width:100%;max-width:440px}
+.app .cli-login.on{display:flex}
+.app .cli-login-icon{width:58px;height:58px;display:flex;align-items:center;justify-content:center;border:1px solid var(--bd2);border-radius:16px;background:var(--s1);color:var(--tx);margin-bottom:25px}
+.app .cli-login-icon svg{width:30px;height:30px;fill:currentColor}
+.app .cli-login-icon.claude{color:#d97757}
+.app .cli-login-icon.claude svg{fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round}
+.app .cli-login h2{margin:0;color:var(--tx);font-size:23px;line-height:1.25;letter-spacing:-.015em}
+.app .cli-login p{color:var(--tx2);font-size:13px;line-height:1.55;margin:14px 0 0;max-width:420px}
+.app .cli-login-note{font-size:11.5px!important;color:var(--tx3)!important;margin-top:17px!important}
+.app .cli-login-card{width:100%;box-sizing:border-box;text-align:left;margin-top:25px}
+.app .cli-login-card-label{display:block;font-size:11px;font-weight:600;color:var(--tx2);margin:0 0 8px}
+.app .cli-login-action{width:100%;box-sizing:border-box;display:flex;align-items:center;gap:12px;padding:14px;background:rgba(var(--ac-rgb),.07);border:1px solid rgba(var(--ac-rgb),.55);border-radius:12px;color:var(--tx);text-align:left;font:inherit;cursor:pointer}
+.app .cli-login-action:hover{background:rgba(var(--ac-rgb),.13)}
+.app .cli-login-action:focus-visible,.app .cli-login-link:focus-visible{outline:2px solid var(--ac);outline-offset:3px}
+.app .cli-login-action .install-ic{width:38px;height:38px}
+.app .cli-login-action .install-ic svg{width:21px;height:21px}
+.app .cli-login-action-text{flex:1;min-width:0}
+.app .cli-login-action-text strong,.app .cli-login-action-text small{display:block}
+.app .cli-login-action-text strong{font-size:13px}
+.app .cli-login-action-text small{font-size:12px;color:var(--tx2);margin-top:4px}
+.app .cli-login-command{font-family:var(--font-mono);color:var(--tx);background:var(--s2);border:1px solid var(--bd);border-radius:7px;padding:3px 7px}
+.app .cli-login-feedback{min-height:18px;font-size:11.5px;color:var(--tx2);margin-top:9px}
+.app .cli-login-link{display:inline-flex;align-items:center;justify-content:center;background:transparent;border:0;color:var(--tx2);font:inherit;font-size:12px;text-decoration:none;cursor:pointer;margin-top:15px}
+.app .cli-login-link:hover{color:var(--tx)}
+#app #cliManager .cli-login-secondary{display:inline-flex;margin-top:10px;padding:8px 13px;background:transparent;border:1px solid var(--bd2);border-radius:9px;color:var(--tx2);font:inherit;font-size:12px;cursor:pointer}
+#app #cliManager .cli-login-secondary:hover{background:var(--s2);color:var(--tx)}
+
 .app .cli-manager{display:none;position:absolute;inset:0;z-index:90;min-width:0;min-height:0;box-sizing:border-box;flex-direction:column;background:var(--bg);border-radius:var(--r-ui);overflow:hidden}
 .app .cli-manager.on{display:flex}
 .app.mng-open .chat-context,.app.mng-open .msgs,.app.mng-open .comp{display:none}
@@ -4090,14 +4118,14 @@ Preserve o código existente e explique mudanças relevantes antes de aplicá-la
     <button class="cli-manager-close" id="cliManagerClose" type="button" aria-label="Fechar" title="Fechar"><i class="ti ti-x" aria-hidden="true"></i></button>
     <div class="cli-manager-body">
       <div class="cli-manager-wrap">
-        <div class="cli-hero-ic" aria-hidden="true"><i class="ti ti-download"></i></div>
-        <div class="cli-manager-head">
+        <div class="cli-hero-ic" id="cliHero" aria-hidden="true"><i class="ti ti-download"></i></div>
+        <div class="cli-manager-head" id="cliManagerHead">
           <div class="cli-manager-title" id="cliManagerTitle">Choose your AI provider</div>
           <div class="cli-manager-sub" id="cliManagerDescription">Selecione um provedor abaixo para instalar e usar no chat.</div>
           <div class="cli-manager-hint" id="cliManagerHint">Os downloads exibem progresso em tempo real e ficam sincronizados com as Configurações.</div>
           <div class="cli-status-badge" id="cliManagerBadge" role="status" aria-live="polite">Aguardando seleção</div>
         </div>
-        <div class="cli-manager-stack">
+        <div class="cli-manager-stack" id="cliManagerStack">
           <div class="cli-section-label">Choose provider</div>
           <div class="cli-choice-list" role="group" aria-label="CLIs disponíveis">
             <button class="cli-choice" type="button" data-cli-choice="claude" aria-pressed="false">
@@ -4112,11 +4140,30 @@ Preserve o código existente e explique mudanças relevantes antes de aplicá-la
             </button>
           </div>
         </div>
-        <div class="cli-manager-foot">
+        <div class="cli-manager-foot" id="cliManagerFoot">
           <div class="cli-manager-actions">
+            <button class="cli-manager-reinstall on" id="cliAlreadyInstalled" type="button"><i class="ti ti-arrow-right" aria-hidden="true"></i><span>Já instalei · continuar</span></button>
             <button class="cli-manager-reinstall" id="cliReinstallCtrl" type="button"><i class="ti ti-refresh" aria-hidden="true"></i><span>Reinstalar</span></button>
             <button class="cli-manager-install" id="cliInstallCtrl" type="button"><i class="ti ti-download" aria-hidden="true"></i><span>Install</span><span class="cli-box" id="cliInstallBox" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Instalando"><span class="cli-track"><i id="cliInstallTrack"></i></span><span class="cli-pct"><span id="cliInstallStage">Baixando…</span><span id="cliInstallPct">0%</span></span></span></button>
           </div>
+        </div>
+        <div class="cli-login" id="cliLoginView">
+          <div class="cli-login-icon" id="cliLoginIcon" aria-hidden="true"><svg viewBox="0 0 24 24"></svg></div>
+          <h2 id="cliLoginTitle">Entre no seu provedor</h2>
+          <p id="cliLoginDescription"></p>
+          <p class="cli-login-note">Depois de concluir a instalação, abra o terminal no seu computador e execute o comando abaixo. O próprio CLI orientará a autenticação oficial.</p>
+          <div class="cli-login-card">
+            <span class="cli-login-card-label">Provedor selecionado</span>
+            <button class="cli-login-action" id="cliLoginCopy" type="button">
+              <span class="install-ic brand" id="cliLoginSmallIcon"><svg viewBox="0 0 24 24" aria-hidden="true"></svg></span>
+              <span class="cli-login-action-text"><strong id="cliLoginActionText"></strong><small>Copiar comando <code class="cli-login-command" id="cliLoginCommand"></code></small></span>
+              <i class="ti ti-copy" aria-hidden="true"></i>
+            </button>
+            <div class="cli-login-feedback" id="cliLoginFeedback" role="status" aria-live="polite"></div>
+          </div>
+          <a class="cli-login-link" id="cliLoginAccount" target="_blank" rel="noopener noreferrer">Criar ou acessar conta ↗</a>
+          <button class="cli-login-link" id="cliLoginBack" type="button">Precisa instalar ou trocar de provedor? Voltar</button>
+          <p class="cli-login-note">O Blocksmith na web não consegue verificar a instalação ou sessão do CLI, nem conectá-lo ao chat automaticamente.</p>
         </div>
       </div>
     </div>
@@ -4771,7 +4818,8 @@ var INSTALL_ITEMS={
 };
 var CLI_META={claude:INSTALL_ITEMS.claude,codex:INSTALL_ITEMS.codex};
 var cliInstalled={claude:false,codex:false,studio:false,blender:false};
-var installJobs={},selectedCli=null,cliManagerFocus=null;
+var installJobs={},selectedCli=null,cliManagerFocus=null,cliManagerStep='choose';
+var CLI_GUIDE={claude:{docs:'https://code.claude.com/docs/en/quickstart',account:'https://claude.ai/',command:'claude auth login',brand:'claude',label:'Claude Code'},codex:{docs:'https://developers.openai.com/codex/cli/',account:'https://chatgpt.com/',command:'codex login',brand:'openai',label:'ChatGPT Codex'}};
 
 function ensureCardProgress(btn){
   var card=btn?btn.closest('.install-card'):null;
@@ -4881,42 +4929,54 @@ function updateInstallLabel(){
   }
 }
 function renderCliManager(){
+  var login=cliManagerStep==='login'&&!!CLI_GUIDE[selectedCli];
+  ['cliHero','cliManagerHead','cliManagerStack','cliManagerFoot'].forEach(function(id){$(id).style.display=login?'none':''});
+  $('cliLoginView').classList.toggle('on',login);
+  $('cliManager').setAttribute('aria-labelledby',login?'cliLoginTitle':'cliManagerTitle');
+  if(login){
+    var guide=CLI_GUIDE[selectedCli];
+    var logo=TABLER_PATHS['brand-'+guide.brand]||'';
+    $('cliLoginIcon').className='cli-login-icon '+guide.brand;
+    $('cliLoginIcon').querySelector('svg').innerHTML=logo;
+    $('cliLoginSmallIcon').className='install-ic brand '+guide.brand;
+    $('cliLoginSmallIcon').querySelector('svg').innerHTML=logo;
+    $('cliLoginDescription').textContent='Entre no '+guide.label+' para concluir a configuração do provedor.';
+    $('cliLoginActionText').textContent='Entrar com '+guide.label;
+    $('cliLoginCommand').textContent=guide.command;
+    $('cliLoginAccount').href=guide.account;
+    $('cliLoginAccount').textContent='Ainda não tenho uma conta '+(selectedCli==='codex'?'ChatGPT':'Claude')+' ↗';
+    return;
+  }
   document.querySelectorAll('[data-cli-choice]').forEach(function(choice){
-    var key=choice.getAttribute('data-cli-choice');
-    var on=key===selectedCli;
+    var key=choice.getAttribute('data-cli-choice'),on=key===selectedCli;
     choice.classList.toggle('act',on);choice.setAttribute('aria-pressed',on?'true':'false');
     var pill=choice.querySelector('[data-cli-pill]');
-    if(pill){
-      var itemJob=installJobs[key],itemDone=!!cliInstalled[key],itemMeta=CLI_META[key];
-      pill.className='cli-choice-pill'+(itemJob?' busy':(itemDone?' done':''));
-      pill.textContent=itemJob?(itemJob.pct+'%'):(itemDone?'Instalado':formatMB(itemMeta.sizeMB)+' MB');
-    }
+    if(pill){pill.className='cli-choice-pill';pill.textContent='CLI'}
   });
   var meta=selectedCli?CLI_META[selectedCli]:null;
-  var installed=!!(meta&&cliInstalled[selectedCli]);
-  var job=selectedCli?installJobs[selectedCli]:null;
-  var badge=$('cliManagerBadge');
-  badge.className='cli-status-badge'+(meta?(job?' busy':(installed?' yes':' no')):'');
-  badge.textContent=meta?(job?(job.pct<78?'Baixando… '+job.pct+'%':'Instalando… '+job.pct+'%'):(installed?'Instalado':'Não instalado')):'Aguardando seleção';
-  if(!meta){
-    $('cliManagerDescription').textContent='Selecione um provedor abaixo para verificar o status e instalar.';
-    $('cliManagerHint').textContent='Os downloads exibem progresso em tempo real e ficam sincronizados com as Configurações.';
-  }else if(job){
-    var dlMB=formatMB(meta.sizeMB*(Math.min(78,job.pct)/78));
-    $('cliManagerDescription').textContent=meta.name+' — '+job.stage+' ('+dlMB+' / '+formatMB(meta.sizeMB)+' MB)';
-    $('cliManagerHint').textContent='Baixando e instalando em tempo real…';
-  }else if(installed){
-    $('cliManagerDescription').textContent=meta.name+' selecionado. CLI instalado — pronto para uso.';
-    $('cliManagerHint').textContent='Você pode reinstalar a qualquer momento pelo botão abaixo.';
-  }else{
-    $('cliManagerDescription').textContent=meta.name+' selecionado. Ainda não instalado ('+formatMB(meta.sizeMB)+' MB).';
-    $('cliManagerHint').textContent='Clique em Install abaixo para baixar e instalar em tempo real.';
-  }
-  var btn=$('cliInstallCtrl'),reBtn=$('cliReinstallCtrl');
-  btn.classList.toggle('on',!!meta);btn.classList.toggle('installed',installed);btn.disabled=!meta||installed||!!job;
-  if(reBtn)reBtn.classList.toggle('on',!!meta&&installed&&!job);
-  updateInstallLabel();
+  $('cliManagerBadge').className='cli-status-badge';
+  $('cliManagerBadge').textContent=meta?'Instalação manual':'Aguardando seleção';
+  $('cliManagerDescription').textContent=meta?meta.name+' selecionado. Abra as instruções oficiais para instalar.':'Selecione um provedor para instalar e entrar.';
+  $('cliManagerHint').textContent='A instalação acontece no seu computador. Depois, continue para o login.';
+  var btn=$('cliInstallCtrl');
+  btn.classList.toggle('on',!!meta);btn.classList.remove('installed','busy');btn.disabled=!meta;
+  btn.querySelector('i').className='ti ti-external-link';
+  btn.querySelector('span').textContent='Abrir instalação oficial';
+  $('cliAlreadyInstalled').classList.toggle('on',!!meta);
+  $('cliReinstallCtrl').classList.remove('on');
 }
+function showCliLogin(key){
+  if(!CLI_GUIDE[key])return;
+  selectedCli=key;cliManagerStep='login';$('cliLoginFeedback').textContent='';
+  renderCliManager();$('cliLoginCopy').focus();
+}
+function openOfficialCliInstall(key){
+  var guide=CLI_GUIDE[key];if(!guide)return;
+  if(!$('cliManager').classList.contains('on')){openCliManager()}
+  window.open(guide.docs,'_blank','noopener,noreferrer');
+  showCliLogin(key);
+}
+
 function reinstallItem(key){
   var item=INSTALL_ITEMS[key];
   if(!item||installJobs[key])return;
@@ -4957,6 +5017,7 @@ function finishDownload(key){
   renderCliManager();
 }
 function startDownload(key){
+  if(CLI_GUIDE[key]){openOfficialCliInstall(key);return}
   var item=INSTALL_ITEMS[key];
   if(!item||cliInstalled[key]||installJobs[key])return;
   var job={
@@ -5010,7 +5071,7 @@ function startDownload(key){
   job.timer=setTimeout(step,60);
 }
 function openCliManager(){
-  cliManagerFocus=document.activeElement;selectedCli=selectedCli||'claude';closeAll();renderCliManager();
+  cliManagerFocus=document.activeElement;selectedCli=selectedCli||'claude';cliManagerStep='choose';closeAll();renderCliManager();
   $('cliManager').classList.add('on');$('cliManager').setAttribute('aria-hidden','false');
   $('app').classList.add('mng-open');
   document.querySelector('[data-cli-choice="'+selectedCli+'"]').focus();
@@ -5019,19 +5080,28 @@ function closeCliManager(){
   if(!$('cliManager').classList.contains('on'))return;
   $('cliManager').classList.remove('on');$('cliManager').setAttribute('aria-hidden','true');
   $('app').classList.remove('mng-open');
-  selectedCli=null;renderCliManager();
+  selectedCli=null;cliManagerStep='choose';renderCliManager();
   if(cliManagerFocus&&cliManagerFocus.focus)cliManagerFocus.focus();
 }
 $('plusBtn').addEventListener('click',openCliManager);
 $('cliManagerClose').addEventListener('click',closeCliManager);
 $('cliInstallCtrl').addEventListener('click',function(){if(selectedCli)startDownload(selectedCli)});
 $('cliReinstallCtrl').addEventListener('click',function(){if(selectedCli)reinstallItem(selectedCli)});
+$('cliAlreadyInstalled').addEventListener('click',function(){if(selectedCli)showCliLogin(selectedCli)});
+$('cliLoginBack').addEventListener('click',function(){cliManagerStep='choose';renderCliManager();document.querySelector('[data-cli-choice="'+selectedCli+'"]').focus()});
+$('cliLoginCopy').addEventListener('click',function(){
+  var guide=CLI_GUIDE[selectedCli];if(!guide)return;
+  var feedback=$('cliLoginFeedback');
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(guide.command).then(function(){feedback.textContent='Comando copiado. Cole e execute no terminal.'},function(){feedback.textContent='Copie o comando exibido e execute no terminal.'});
+  }else{feedback.textContent='Copie o comando exibido e execute no terminal.'}
+});
 document.querySelectorAll('[data-cli-choice]').forEach(function(choice){
   choice.addEventListener('click',function(){selectedCli=choice.getAttribute('data-cli-choice');renderCliManager()});
 });
 $('cliManager').addEventListener('keydown',function(e){
   if(e.key!=='Tab')return;
-  var buttons=Array.prototype.slice.call(this.querySelectorAll('button:not([disabled])')).filter(function(btn){return getComputedStyle(btn).display!=='none'});
+  var buttons=Array.prototype.slice.call(this.querySelectorAll('button:not([disabled]),a[href]')).filter(function(el){return el.getClientRects().length>0&&getComputedStyle(el).visibility!=='hidden'});
   if(!buttons.length)return;
   var first=buttons[0],last=buttons[buttons.length-1];
   if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}
