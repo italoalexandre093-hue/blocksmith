@@ -1,0 +1,24 @@
+{
+  "product": "Blocksmith Studio",
+  "latestDesktopSourceVersion": "0.11.1",
+  "channel": "development",
+  "platform": "Windows x64",
+  "runtime": "Electron",
+  "sourceRepository": "https://github.com/italoalexandre093-hue/blocksmith",
+  "hostedOnRailway": false,
+  "installerAvailableOnRailway": false,
+  "sourceUploadedToGitHub": false,
+  "features": [
+    "MCP connection management",
+    "Explicit approval for AI-initiated MCP calls",
+    "Plan approval and task queue",
+    "Script diff and restore checkpoints",
+    "Project skills",
+    "Playtest reports",
+    "Diagnostic checks",
+    "Rojo integration",
+    "Asset library"
+  ],
+  "notes": "This is release metadata for a separately packaged desktop app. The 0.11.1 desktop source ZIP is not yet stored in this GitHub repository; build it locally with Codex. Railway hosts only the existing web interface.",
+  "instructions": "docs/BLOCKSMITH_DESKTOP_0.11.1.md"
+}
