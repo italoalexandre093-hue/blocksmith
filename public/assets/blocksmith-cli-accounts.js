@@ -1,7 +1,7 @@
 (function(){
 'use strict';
-/* Browser bridge to real, external CLI login. No spoofed login callbacks, token
- * interception, or Railway-side CLI execution. */
+/* Official desktop-app login guidance; existing Codex/Claude CLI choices remain.
+ * No spoofed sign-ins, token interception, or Railway-side process execution. */
 var $=function(id){return document.getElementById(id);};
 if(!$('app')||!$('plusBtn'))return;
 var logos={
@@ -30,24 +30,24 @@ var catalog={
   ]
  },
  antigravity:{
-  title:'Google Antigravity',hint:'Google · App + CLI',description:'Use a conta Google pelo aplicativo Antigravity ou pela CLI oficial agy.',
-  install:'https://antigravity.google/download',docs:'https://antigravity.google/docs/install/',account:'https://antigravity.google.com/',
-  command:'agy',steps:[
-   'Instale o Antigravity CLI ou o aplicativo Windows a partir do site oficial.',
-   'Abra o PowerShell no seu computador e execute agy. Se não houver sessão local, ele abrirá seu navegador.',
-   'Entre com sua conta Google no fluxo OAuth oficial e retorne ao terminal.',
-   'A CLI reutiliza credenciais locais quando disponíveis. A autenticação não é importada pelo site Railway.'
+  title:'Google Antigravity',hint:'Google · Aplicativo Windows',description:'Faça login com Google diretamente no aplicativo oficial Antigravity para Windows.',
+  install:'https://antigravity.google/download',docs:'https://antigravity.google/download',account:'https://antigravity.google.com/',
+  command:'',steps:[
+   'Baixe e instale o aplicativo oficial Antigravity para Windows.',
+   'Abra o Antigravity no seu computador e escolha o login com sua conta Google.',
+   'Conclua a autenticação oficial no navegador, se solicitado, e retorne ao aplicativo.',
+   'O Blocksmith Web não importa essa sessão e não solicita senha, cookies ou tokens privados.'
   ]
  },
  qoder:{
-  title:'Qoder',hint:'Qoder · App + CLI',description:'Agente de código Qoder com autenticação oficial por navegador ou token pessoal na CLI.',
-  install:'https://qoder.com/download',docs:'https://docs.qoder.com/cli/authentication',account:'https://qoder.com/users/sign-in',
-  command:'qoder',steps:[
-   'Instale o Qoder CLI (Windows) pelo download oficial.',
-   'Abra PowerShell e execute qoder.',
-   'No prompt interativo do Qoder, digite /login (ou /signin).',
-   'Escolha Login with Qoder Platform para autenticar pelo navegador e confirme no próprio terminal.'
-  ],after:'/login'
+  title:'Qoder',hint:'Qoder · Aplicativo Windows',description:'Faça login diretamente pelo aplicativo oficial Qoder para Windows.',
+  install:'https://qoder.com/download',docs:'https://qoder.com/download',account:'https://qoder.com/users/sign-in',
+  command:'',steps:[
+   'Baixe e instale o aplicativo oficial Qoder para Windows.',
+   'Abra o Qoder e use a opção de entrar na sua conta no próprio aplicativo.',
+   'Conclua o login oficial pelo navegador, quando solicitado, e volte ao Qoder.',
+   'O Blocksmith Web não acessa a sessão local do Qoder nem pede tokens de autenticação.'
+  ]
  }
 };
 function brand(key){
@@ -68,7 +68,7 @@ function el(tag,className,str){
 var overlay=el('div','blocksmith-tool-overlay');
 overlay.id='blocksmithToolOverlay';overlay.setAttribute('aria-hidden','true');
 overlay.innerHTML='<div class="blocksmith-tool-dialog" role="dialog" aria-modal="true" aria-labelledby="blocksmithToolTitle" tabindex="-1">'+
- '<div class="blocksmith-tool-head"><div><strong id="blocksmithToolTitle">Connect developer tools</strong><p>Configure CLI tools and sign in safely on your own device.</p></div>'+
+ '<div class="blocksmith-tool-head"><div><strong id="blocksmithToolTitle">Conectar ferramentas de IA</strong><p>Faça login diretamente nos aplicativos oficiais do seu dispositivo.</p></div>'+
  '<button class="blocksmith-tool-close" id="blocksmithToolClose" type="button" title="Fechar" aria-label="Fechar">✕</button></div>'+
  '<div class="blocksmith-tool-body"><div class="blocksmith-tool-list" id="blocksmithToolList"></div>'+
  '<div class="blocksmith-tool-details" id="blocksmithToolDetails"></div></div></div>';
@@ -124,20 +124,22 @@ function render(){
  area.appendChild(el('p','blocksmith-tool-description',cfg.description));
  var steps=el('ol','blocksmith-tool-steps');
  cfg.steps.forEach(function(s){steps.appendChild(el('li','',s));});area.appendChild(steps);
+ if(cfg.command){
  var shell=el('div','blocksmith-tool-code');shell.appendChild(el('code','',cfg.command+(cfg.after?'\n'+cfg.after:'')));
  var copy=el('button','blocksmith-tool-copy','Copiar');copy.type='button';copy.setAttribute('data-cli-copy',current);
  copy.addEventListener('click',function(){copyToClipboard(cfg.command).then(function(){feedback.textContent='Comando copiado. Execute no terminal local.';},function(){feedback.textContent='Copie manualmente o comando acima.';});});
  shell.appendChild(copy);area.appendChild(shell);
- if(cfg.after)area.appendChild(el('p','blocksmith-tool-description','Depois de executar qoder, digite /login dentro do programa (não diretamente no PowerShell).'));
+ if(cfg.after)area.appendChild(el('p','blocksmith-tool-description','Siga as instruções exibidas pela ferramenta no computador.'));
+ }
  var actions=el('div','blocksmith-tool-actions');
  var install=el('button','blocksmith-tool-button main','Abrir download oficial');install.type='button';install.setAttribute('data-cli-install',current);
  install.addEventListener('click',function(){openExternal(cfg.install);});
  var signin=el('button','blocksmith-tool-button','Abrir conta oficial');signin.type='button';signin.setAttribute('data-cli-signin',current);
- signin.addEventListener('click',function(){openExternal(cfg.account);if(feedback)feedback.textContent='Conclua o login no site ou CLI oficial. O Blocksmith Web não recebe tokens de autenticação.';});
+ signin.addEventListener('click',function(){openExternal(cfg.account);if(feedback)feedback.textContent='Conclua o login no aplicativo ou site oficial. O Blocksmith Web não recebe suas credenciais nem vincula automaticamente a sessão.';});
  var docs=el('button','blocksmith-tool-button','Guia de login');docs.type='button';docs.setAttribute('data-cli-docs',current);
  docs.addEventListener('click',function(){openExternal(cfg.docs);});
  actions.appendChild(install);actions.appendChild(signin);actions.appendChild(docs);area.appendChild(actions);
- area.appendChild(el('div','blocksmith-tool-alert','Status: não verificado. O site Railway não executa agy, qoder, codex ou claude do Windows e não recebe seus tokens OAuth. O login da CLI é realizado diretamente pelo programa oficial.'));
+ area.appendChild(el('div','blocksmith-tool-alert','Status: não verificado. Antigravity e Qoder usam login nos aplicativos oficiais Windows. O Railway não acessa nem valida sessões locais, e a conexão ao chat requer integração autorizada. Nunca compartilhe cookies ou tokens pessoais.'));
  feedback=el('div','blocksmith-tool-feedback');feedback.setAttribute('role','status');area.appendChild(feedback);
 }
 $('blocksmithToolClose').addEventListener('click',closeHub);
@@ -172,14 +174,14 @@ function addSettingsCards(){
   var card=el('div','install-card blocksmith-cli-new');card.id='cliCard-'+key;
   var icon=el('span','install-ic');icon.appendChild(brand(key));card.appendChild(icon);
   var description=el('div','install-body');description.appendChild(el('strong','',cfg.title));
-  description.appendChild(el('small','',key==='antigravity'?'Google OAuth na CLI oficial agy.':'Login pelo navegador via qoder /login.'));
+  description.appendChild(el('small','',key==='antigravity'?'Login com Google pelo aplicativo oficial Windows.':'Login pelo aplicativo oficial Qoder para Windows.'));
   card.appendChild(description);
   var btn=el('button','','Configurar');btn.id='cliConfigure-'+key;btn.type='button';
   btn.addEventListener('click',function(){showHub(key);});card.appendChild(btn);
   if(reference&&reference.parentNode){reference.insertAdjacentElement('afterend',card);reference=card;}
   else pane.appendChild(card);
  });
- var note=el('div','web-model-legacy-notice','Antigravity e Qoder entram com suas contas oficiais. No site Web, estes botões abrem a instalação e as instruções de autenticação; o uso da CLI no chat exige conexão local pelo aplicativo Windows.');
+ var note=el('div','web-model-legacy-notice','Antigravity e Qoder: faça login no aplicativo oficial Windows, sem instalar CLI. O site Railway não consegue reutilizar essa sessão automaticamente no chat; isso exige integração local ou API oficialmente autorizada.');
  pane.appendChild(note);
 }
 addQuickButtons();addSettingsCards();

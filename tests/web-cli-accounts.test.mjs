@@ -36,12 +36,13 @@ test('Sign-in URLs only point to official domains',()=>{
  assert.ok(ui.includes("u.protocol!=='https:'"));
  assert.ok(ui.includes("Destino não autorizado."));
 });
-test('Qoder uses CLI login and Antigravity launches local Google OAuth',()=>{
- assert.match(ui,/command:'agy'/);
- assert.match(ui,/command:'qoder'/);
- assert.match(ui,/after:'\/login'/);
- assert.match(ui,/Google OAuth/);
- assert.match(ui,/Login with Qoder Platform/);
+test('Antigravity and Qoder guide login through official Windows apps without CLI',()=>{
+ assert.match(ui,/command:''/);
+ assert.doesNotMatch(ui,/command:'agy'/);
+ assert.doesNotMatch(ui,/command:'qoder'/);
+ assert.match(ui,/Faça login com Google diretamente no aplicativo oficial/);
+ assert.match(ui,/aplicativo oficial Qoder para Windows/);
+ assert.match(ui,/if\(cfg\.command\)\{/);
  assert.match(ui,/command:'codex login'/);
  assert.match(ui,/command:'claude auth login'/);
 });
