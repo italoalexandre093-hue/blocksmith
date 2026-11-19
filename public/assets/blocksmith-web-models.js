@@ -33,27 +33,11 @@ function keyFor(item){try{return sessionStorage.getItem(sessionKey(item.provider
 function saveKey(provider,base,value){try{if(value)sessionStorage.setItem(sessionKey(provider,base),value);else sessionStorage.removeItem(sessionKey(provider,base));}catch(e){}}
 function updateChip(){
  var m=selectedModel();
- if($('chipName'))$('chipName').textContent=m?m.modelId:'Selecionar modelo';
+ if($('chipName'))$('chipName').textContent=m?m.modelId:'Select model';
  if($('chipEff'))$('chipEff').textContent=m?' · '+LABELS[m.provider]:'';
 }
 var baseRenderChip=window.renderChip;
 if(typeof baseRenderChip==='function')window.renderChip=function(){baseRenderChip();updateChip();};
-// The embedded template still owns old provider tabs and a demo effort slider.
-// Keep their DOM nodes for its original event initialization, but make the
-// hosted web selector exclusively about configured API models.
-var picker=$('pop');
-if(picker){
- picker.setAttribute('data-web-model-picker','true');
- picker.setAttribute('aria-label','Selecionar modelo de IA');
- ['.prov','.eff','.trk'].forEach(function(selector){
-  var old=picker.querySelector(selector);
-  if(old){old.setAttribute('aria-hidden','true');old.inert=true;old.hidden=true;}
- });
- var heading=node('div','web-model-picker-heading','Selecionar modelo');
- picker.insertBefore(heading,picker.firstChild);
-}
-if($('srch')){$('srch').setAttribute('data-ph','Pesquisar modelos cadastrados...');$('srch').setAttribute('aria-label','Pesquisar modelos cadastrados');}
-if($('chipIc')){$('chipIc').style.display='none';$('chipIc').setAttribute('aria-hidden','true');}
 // Models is managed exclusively in Configurações → Models.
 // The chat's model picker remains available for selecting a configured model.
 var oldTab=document.querySelector('[data-settings-tab="openai"]');
@@ -234,7 +218,7 @@ function renderPopup(){
  list.textContent='';
  var found=models.filter(function(m){return (m.modelId+' '+LABELS[m.provider]).toLowerCase().includes(search);});
  if(!found.length){
-  list.appendChild(node('div','web-model-legacy-notice',models.length?'Nenhum modelo corresponde à pesquisa.':'Nenhum modelo cadastrado. Adicione em Configurações → Models.'));
+  list.appendChild(node('div','web-model-legacy-notice','Nenhum modelo cadastrado. Vá em Configurações → Models para adicionar.'));
   var manage=node('button','web-btn','Abrir Configurações → Models');manage.type='button';
   manage.addEventListener('click',function(){
    if($('pop'))$('pop').style.display='none';
@@ -255,10 +239,7 @@ function selectModelMenu(e){
  if(!target)return;
  e.preventDefault();e.stopImmediatePropagation();
  var popup=$('pop');search='';if($('srch'))$('srch').textContent='';
- renderPopup();
- var opening=popup.style.display==='none';
- popup.style.display=opening?'block':'none';
- if($('modelBtn'))$('modelBtn').setAttribute('aria-expanded',opening?'true':'false');
+ renderPopup();popup.style.display=popup.style.display==='none'?'block':'none';
 }
 document.addEventListener('click',selectModelMenu,true);
 if($('srch'))$('srch').addEventListener('input',function(e){search=($('srch').textContent||'').toLowerCase();renderPopup();e.stopImmediatePropagation();},true);
