@@ -107,6 +107,14 @@ export default function App() {
         colorStyle.href = '/assets/blocksmith-ui-colors.css?v=1';
         doc.head.appendChild(colorStyle);
       }
+      // Editor-grade design system, applied after Color Studio so palettes remain active.
+      if (doc.head && !doc.getElementById('blocksmith-pro-workspace-style')) {
+        const proStyle = doc.createElement('link');
+        proStyle.id = 'blocksmith-pro-workspace-style';
+        proStyle.rel = 'stylesheet';
+        proStyle.href = '/assets/blocksmith-pro-workspace.css?v=1';
+        doc.head.appendChild(proStyle);
+      }
       if (doc.body && !doc.getElementById('blocksmith-web-history-script')) {
         const historyScript = doc.createElement('script');
         historyScript.id = 'blocksmith-web-history-script';
@@ -126,6 +134,13 @@ export default function App() {
         colorScript.src = '/assets/blocksmith-ui-colors.js?v=1';
         colorScript.async = false;
         doc.body.appendChild(colorScript);
+      }
+      if (doc.body && !doc.getElementById('blocksmith-pro-workspace-script')) {
+        const proScript = doc.createElement('script');
+        proScript.id = 'blocksmith-pro-workspace-script';
+        proScript.src = '/assets/blocksmith-pro-workspace.js?v=1';
+        proScript.async = false;
+        doc.body.appendChild(proScript);
       }
     } catch {
       // Ignore cross-origin access errors if ever served from a different origin
