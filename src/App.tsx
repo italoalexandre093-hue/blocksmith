@@ -92,11 +92,25 @@ export default function App() {
         modelsScript.async = false;
         doc.body.appendChild(modelsScript);
       }
+      if (doc.head && !doc.getElementById('blocksmith-cli-accounts-style')) {
+        const toolsStyle = doc.createElement('link');
+        toolsStyle.id = 'blocksmith-cli-accounts-style';
+        toolsStyle.rel = 'stylesheet';
+        toolsStyle.href = '/assets/blocksmith-cli-accounts.css?v=1';
+        doc.head.appendChild(toolsStyle);
+      }
       if (doc.body && !doc.getElementById('blocksmith-web-history-script')) {
         const historyScript = doc.createElement('script');
         historyScript.id = 'blocksmith-web-history-script';
         historyScript.src = '/assets/blocksmith-web-history.js';
         doc.body.appendChild(historyScript);
+      }
+      if (doc.body && !doc.getElementById('blocksmith-cli-accounts-script')) {
+        const toolsScript = doc.createElement('script');
+        toolsScript.id = 'blocksmith-cli-accounts-script';
+        toolsScript.src = '/assets/blocksmith-cli-accounts.js?v=1';
+        toolsScript.async = false;
+        doc.body.appendChild(toolsScript);
       }
     } catch {
       // Ignore cross-origin access errors if ever served from a different origin
