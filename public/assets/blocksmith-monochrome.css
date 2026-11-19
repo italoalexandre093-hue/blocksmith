@@ -1,0 +1,205 @@
+/*
+ * BLOCKSMITH STUDIO / MONOCHROME
+ * Final style layer: pure grayscale surfaces, white active states,
+ * charcoal borders. No forced filters on user-generated media.
+ */
+:root { color-scheme:dark; }
+html, body, #vis-container { background:#080808 !important; }
+#app.app, #app.app[data-theme="dark"], #app.app[data-theme="gray"], #app.app[data-theme="white"] {
+  --tx:#f7f7f7 !important;
+  --tx2:#c5c5c5 !important;
+  --tx3:#999999 !important;
+  --pro-text:#f8f8f8 !important;
+  --pro-muted:#bcbcbc !important;
+  --pro-subtle:#969696 !important;
+  --midnight-white:#f7f7f7;
+  --midnight-black:#080808;
+  --midnight-deep:#111111;
+  --midnight-surface:#191919;
+  --midnight-navy:#222222;
+  --midnight-highlight:#eeeeee;
+  --midnight-border:#363636;
+  background:var(--ui-bg,#080808) !important;
+  color:#f7f7f7 !important;
+  border-color:var(--ui-border,#383838) !important;
+  scrollbar-color:#494949 #0d0d0d !important;
+}
+#app.app * { scrollbar-color:#494949 #0d0d0d !important; }
+#app.app *::-webkit-scrollbar-track {background:#101010 !important;}
+#app.app *::-webkit-scrollbar-thumb {background:#4d4d4d !important;border-color:#111 !important;}
+#app.app *::selection {background:#d9d9d9 !important;color:#090909 !important;}
+#app.app .sd {
+  background:linear-gradient(180deg,var(--ui-side,#101010),var(--ui-bg,#080808)) !important;
+  border-right:1px solid var(--ui-border,#383838) !important;
+  box-shadow:none !important;
+}
+#app.app .rp {
+  background:var(--ui-bg,#080808) !important;
+}
+#app.app .brand {
+  border-color:var(--ui-border,#383838) !important;
+}
+#app.app .mark {
+  background:linear-gradient(150deg,#fff,#c5c5c5) !important;
+  border-color:#fff !important;
+  box-shadow:0 5px 18px rgba(255,255,255,.08) !important;
+}
+#app.app .mark svg {stroke:#101010 !important;}
+#app.app .mark svg [fill] {fill:rgba(0,0,0,.09) !important;}
+#app.app .word, #app.app .bs-page-title {color:#f8f8f8 !important;}
+#app.app .word::after,#app.app .bs-eyebrow,#app.app .bs-nav-heading {color:#969696 !important;}
+#app.app .newc {
+  background:linear-gradient(135deg,#252525,#171717) !important;
+  border-color:#444 !important;
+  color:#f7f7f7 !important;
+  box-shadow:inset 0 1px rgba(255,255,255,.04) !important;
+}
+#app.app .newc i {color:#f3f3f3 !important;}
+#app.app .newc:hover {background:#303030 !important;border-color:#777 !important;}
+#app.app .nav, #app.app .tree-chat, #app.app .tree-row {color:#c6c6c6 !important;}
+#app.app .nav i, #app.app .tree-caret, #app.app .tree-plus, #app.app .tree-more {color:#a2a2a2 !important;}
+#app.app .nav:hover, #app.app .tree-chat:hover, #app.app .tree-row:hover,
+#app.app .tgl:hover, #app.app .iconb:hover {background:#252525 !important;color:#fff !important;}
+#app.app .nav.act, #app.app .tree-chat.act {
+  background:#272727 !important;
+  box-shadow:inset 3px 0 #f1f1f1 !important;
+  color:#fff !important;
+}
+#app.app .nav.act i, #app.app .tree-chat.act i {color:#f1f1f1 !important;}
+#app.app .settings-btn, #app.app .bs-topbar-btn,#app.app .bs-web-tag {
+  background:var(--ui-surface,#191919) !important;
+  color:#eee !important;
+  border-color:var(--ui-border,#383838) !important;
+}
+#app.app .settings-btn:hover,#app.app .bs-topbar-btn:hover {background:#303030 !important;border-color:#777 !important;}
+#app.app .bs-topbar-btn i {color:#f3f3f3 !important;}
+#app.app .bs-topbar {border-color:var(--ui-border,#383838) !important;}
+#app.app .chat-context.on {background:#1b1b1b !important;border-color:#383838 !important;color:#bbb !important;}
+#app.app .msgs,#app.app .msgs.still {color:#f3f3f3 !important;}
+#app.app .msgs .u {background:#252525 !important;border:1px solid #404040 !important;color:#f5f5f5 !important;}
+#app.app .msgs .a {color:#ededed !important;}
+#app.app .msgs .ua, #app.app .msgs .ua span {color:#b9b9b9 !important;}
+#app.app .comp {background:#1a1a1a !important;border:1px solid #444 !important;box-shadow:0 14px 44px rgba(0,0,0,.37) !important;}
+#app.app .comp:focus-within {border-color:#ddd !important;box-shadow:0 14px 44px rgba(0,0,0,.42),0 0 0 2px rgba(255,255,255,.09) !important;}
+#app.app .comp #inp,#app.app .comp .ed {color:#fff !important;}
+#app.app .comp #inp:empty::before {color:#aaa !important;}
+#app.app .comp .bar {border-color:#383838 !important;}
+#app.app .comp .chip {color:#c8c8c8 !important;}
+#app.app .comp .chip:hover {background:#2c2c2c !important;color:#fff !important;}
+#app.app #chipName {color:#fff !important;}
+#app.app #chipEff, #app.app .pi {color:#aaa !important;}
+#app.app .comp .send, #app.app .send, #app.app .send:hover,#app.app .send.on {
+  background:#f2f2f2 !important;
+  color:#101010 !important;
+  border:1px solid #fff !important;
+  box-shadow:0 5px 17px rgba(255,255,255,.10) !important;
+}
+#app.app .comp .send i, #app.app .send i {color:#101010 !important;}
+#app.app .comp .send:hover {filter:brightness(.88) !important;}
+#app.app .bs-welcome-label::before {background:#fff !important;box-shadow:0 0 0 4px rgba(255,255,255,.12) !important;}
+#app.app .bs-welcome h1 strong {color:#fff !important;}
+#app.app .bs-shortcut {background:#191919 !important;border-color:#3c3c3c !important;color:#f5f5f5 !important;}
+#app.app .bs-shortcut:hover {background:#252525 !important;border-color:#bbb !important;}
+#app.app .bs-shortcut-icon {color:#f4f4f4 !important;background:#333 !important;}
+#app.app .bs-shortcut small,#app.app .bs-welcome p {color:#bebebe !important;}
+#app.app .bs-composer-note,#app.app .bs-composer-note kbd {color:#aaa !important;}
+#app.app .bs-composer-note kbd {border-color:#444 !important;background:#111 !important;}
+#app.app .panel-view.on,#app.app #settingsView,#app.app .cli-manager {background:var(--ui-bg,#080808) !important;color:#f5f5f5 !important;}
+#app.app .panel-head,#app.app .settings-tabs,#app.app .settings-tool,#app.app .setting-row,#app.app .settings-group {border-color:#3d3d3d !important;}
+#app.app .panel-title,#app.app .settings-pane-title,#app.app .settings-group-title {color:#fff !important;}
+#app.app .panel-sub,#app.app .settings-pane-sub,#app.app .settings-group-sub {color:#bcbcbc !important;}
+#app.app .settings-tabs {background:#131313 !important;}
+#app.app .settings-tab {color:#bcbcbc !important;}
+#app.app .settings-tab:hover {background:#252525 !important;color:#fff !important;}
+#app.app .settings-tab.act {
+  background:#272727 !important;
+  box-shadow:inset 3px 0 #fff !important;
+  color:#fff !important;
+}
+#app.app .settings-tool,#app.app .setting-row,#app.app .install-card,#app.app .settings-card {
+  background:#1a1a1a !important;
+  border-color:#383838 !important;
+  color:#eee !important;
+}
+#app.app .settings-tool strong,#app.app .settings-row strong,#app.app .install-body strong {color:#f6f6f6 !important;}
+#app.app .settings-tool small,#app.app .setting-row small,#app.app .install-body small {color:#b8b8b8 !important;}
+#app.app .settings-input,#app.app .settings-textarea,#app.app input[type="text"],#app.app input[type="password"],#app.app textarea,#app.app select {
+  background:#101010 !important;
+  color:#fff !important;
+  border-color:#484848 !important;
+}
+#app.app input::placeholder,#app.app textarea::placeholder {color:#9d9d9d !important;}
+#app.app :is(input,textarea,select):focus {border-color:#fff !important;outline-color:#d8d8d8 !important;}
+#app.app input[type="checkbox"],#app.app input[type="range"] {accent-color:#eee !important;}
+#app.app .settings-btn:hover,#app.app .settings-action:hover,#app.app .install-btn:hover,#app.app .panel-close:hover,
+#app.app .seg-btn:hover,#app.app .theme-option:hover {background:#303030 !important;color:#fff !important;border-color:#777 !important;}
+#app.app .install-btn,#app.app .settings-action,#app.app .seg-btn,#app.app .theme-option,#app.app .text-size-btn,#app.app .panel-close {
+  background:#252525 !important;
+  border:1px solid #484848 !important;
+  color:#eee !important;
+}
+#app.app .theme-option.act,#app.app .seg-btn.act {background:#313131 !important;border-color:#f2f2f2 !important;color:#fff !important;}
+#app.app .theme-swatch.dark {background:#090909 !important;}
+#app.app .theme-swatch.white {background:linear-gradient(140deg,#0b0b0b 50%,#fff 50%) !important;}
+#app.app .theme-swatch.gray {background:#383838 !important;}
+#app.app .theme-swatch.auto {background:linear-gradient(90deg,#080808 50%,#eee 50%) !important;}
+#app.app .accent-custom {display:none !important;}
+#app.app .accent-btn {background:#181818 !important;border-color:#4c4c4c !important;}
+#app.app .accent-btn.act,#app.app .accent-btn[aria-pressed="true"] {border-color:#fff !important;}
+#app.app .ap-preview,#app.app .preview-pane {background:linear-gradient(140deg,#101010,#303030) !important;border-color:#4b4b4b !important;}
+#app.app .ap-pv-dot.acc,#app.app .ap-pv-btn {background:#fff !important;}
+#app.app .pop,#app.app .mpop,#app.app .apop,#app.app .tree-menu,#app.app .cli-manager,#app.app .menu,#app.app .dropdown {
+  background:#1a1a1a !important;color:#fff !important;border-color:#4d4d4d !important;
+  box-shadow:0 15px 50px rgba(0,0,0,.45) !important;
+}
+#app.app .orow:hover,#app.app .pop button:hover,#app.app .mpop button:hover,#app.app .apop button:hover,
+#app #mlist .web-popup-model:hover {background:#303030 !important;color:#fff !important;}
+#app.app .cli-manager .cli-card,#app.app .cli-manager .install-card {background:#1c1c1c !important;border-color:#404040 !important;}
+#app #webModelsView.on {background:#080808 !important;color:#fff !important;}
+#app .web-model-card,#app .web-model-legacy-notice {background:#1b1b1b !important;border-color:#454545 !important;color:#eee !important;}
+#app .web-model-card:hover {border-color:#eee !important;}
+#app .web-model-card strong {color:#fff !important;}
+#app .web-model-card small,#app #webModelsView p {color:#bdbdbd !important;}
+#app .web-btn,body .web-model-dialog .web-btn {background:#272727 !important;color:#f7f7f7 !important;border-color:#505050 !important;}
+#app .web-btn:hover,body .web-model-dialog .web-btn:hover {background:#383838 !important;border-color:#aaa !important;}
+#app .web-btn-primary,body .web-model-dialog .web-btn-primary,
+#app .web-btn-primary:hover,body .web-model-dialog .web-btn-primary:hover {
+  background:#f1f1f1 !important;
+  border-color:#fff !important;
+  color:#111 !important;
+  box-shadow:none !important;
+}
+#app #mlist .web-popup-model {background:#1b1b1b !important;color:#eee !important;border-color:#444 !important;}
+#app #mlist .web-popup-model small {color:#bbb !important;}
+body .web-model-dialog {background:#111 !important;color:#f2f2f2 !important;border-color:#505050 !important;}
+body .web-model-dialog .web-dialog-title {background:#1b1b1b !important;color:#fff !important;border-color:#505050 !important;}
+body .web-model-dialog .web-dialog-body,body .web-model-dialog .web-dialog-footer {background:#151515 !important;border-color:#414141 !important;}
+body .web-model-dialog input,body .web-model-dialog select {background:#111 !important;border-color:#505050 !important;color:#fff !important;}
+body .web-model-dialog .web-dialog-field,body .web-model-dialog .web-dialog-note {color:#dedede !important;}
+body .web-model-dialog .web-note,body .web-model-dialog .web-error {color:#bcbcbc !important;}
+body .web-model-dialog-backdrop {background:rgba(0,0,0,.82) !important;}
+#app.app .visual-color-studio {background:linear-gradient(150deg,#1b1b1b,#121212) !important;border-color:#3f3f3f !important;}
+#app.app .visual-color-choice {background:#171717 !important;border-color:#444 !important;color:#f7f7f7 !important;}
+#app.app .visual-color-choice:hover {border-color:#eee !important;}
+#app.app .visual-color-choice[aria-pressed="true"] {border-color:#fff !important;box-shadow:0 0 0 2px rgba(255,255,255,.18) !important;}
+#app.app .visual-color-reset {background:#262626 !important;border-color:#565656 !important;color:#f4f4f4 !important;}
+#app.app .visual-color-dot {border-color:#777 !important;}
+#app.app .visual-color-hint,#app.app .visual-color-status {color:#bbb !important;}
+body .blocksmith-tool-overlay {background:rgba(0,0,0,.8) !important;}
+body .blocksmith-tool-dialog {background:#111 !important;color:#fff !important;border:1px solid #505050 !important;}
+body .blocksmith-tool-head,body .blocksmith-tool-details {background:#161616 !important;border-color:#444 !important;color:#f4f4f4 !important;}
+body .blocksmith-tool-choice {background:#202020 !important;border-color:#474747 !important;color:#eee !important;}
+body .blocksmith-tool-choice.selected {background:#303030 !important;border-color:#fff !important;box-shadow:inset 3px 0 #fff !important;}
+body .blocksmith-tool-button.main {background:#f1f1f1 !important;color:#111 !important;border-color:#fff !important;}
+body .blocksmith-tool-alert {background:#292929 !important;color:#ddd !important;border-color:#505050 !important;}
+body .blocksmith-tool-feedback {color:#ccc !important;}
+#app .install-prog-fill,#app .range-fill {background:#ededed !important;}
+#app .setting-range::-webkit-slider-thumb {background:#fff !important;}
+#app.app :is(button,[role="button"],input,select,textarea,[contenteditable]):focus-visible,
+body .web-model-dialog :is(button,input,select):focus-visible,
+body .blocksmith-tool-overlay :is(button,a):focus-visible {
+  outline:2px solid #f3f3f3 !important;outline-offset:2px !important;
+}
+@media (prefers-reduced-motion:reduce) {
+  #app.app .visual-color-choice,#app.app .bs-shortcut,#app.app .newc {transition:none !important;}
+}
