@@ -35,7 +35,8 @@ test('Professional design spans all primary screens, respects palette tokens', (
 test('Quick-start cards only prepare a draft and use existing app controls', () => {
   for (const label of ['Criar um sistema', 'Criar uma thumbnail', 'Planejar meu jogo'])
     assert.ok(js.includes(label));
-  assert.ok(js.includes("document.getElementById('newChat')"));
+  assert.ok(js.includes("document.querySelector('#newChat span')"));
+  assert.doesNotMatch(js, /action\('Novo chat'/);
   assert.ok(js.includes("document.getElementById('settingsBtn')"));
   assert.ok(js.includes("new Event('input', {bubbles:true})"));
   assert.ok(js.includes('MutationObserver'));
