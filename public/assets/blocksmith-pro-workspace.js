@@ -57,11 +57,8 @@
     actions.appendChild(button);
     return button;
   }
-  action('Novo chat', 'plus', function () {
-    var trigger = document.getElementById('newChat');
-    if (trigger) trigger.click();
-    editor.focus();
-  });
+  // New chat is intentionally accessed only through the sidebar.
+  // Duplicating that action in the toolbar caused two visible "Novo chat" controls.
   action('Configurações', 'settings', function () {
     var trigger = document.getElementById('settingsBtn');
     if (trigger) trigger.click();

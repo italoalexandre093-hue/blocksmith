@@ -6,6 +6,7 @@ import vm from 'node:vm';
 const read = path => fs.readFileSync(new URL(path, import.meta.url), 'utf8');
 const web = read('../public/assets/blocksmith-web-models.js');
 const history = read('../public/assets/blocksmith-web-history.js');
+const original = read('../public/assets/aistudio/blocksmith-app-ajustado_aadf2d67.html');
 const server = read('../server.js');
 const app = read('../src/App.tsx');
 
@@ -32,6 +33,17 @@ test('Models management is only available inside Settings', () => {
   assert.ok(web.includes('Configurações → Models'));
   assert.ok(web.includes("var target=e.target.closest&&e.target.closest('#modelBtn')"),
     'Chat model selection must remain available');
+});
+
+
+test('Only the real AI web sender handles Send and Enter, without the legacy simulated chat', () => {
+  assert.ok(!original.includes('function go(){'));
+  assert.ok(!original.includes("sd.addEventListener('click',go);"));
+  assert.ok(!original.includes("e.preventDefault();go()"));
+  assert.ok(!original.includes('(resposta de exemplo)'));
+  assert.ok(web.includes("e.stopImmediatePropagation();sendWebChat();"));
+  assert.ok(web.includes("if(!chat||chat.busy||!value)return;"));
+  assert.ok(web.includes("fetch('/api/ai/'+action"));
 });
 
 test('web replaces demo send handlers with real chat calls', () => {
