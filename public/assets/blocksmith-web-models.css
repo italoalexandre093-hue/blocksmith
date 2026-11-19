@@ -1,6 +1,5 @@
 
 /* Blocksmith Web Models: follows the desktop's dark model-manager visual language. */
-#web-models-nav{margin:4px 8px 10px;cursor:pointer}
 #webModelsView.on{display:block!important;overflow:auto;min-width:0;padding:24px 28px!important;color:#f5f8ff;background:#080e1c}
 #webModelsView .web-header{display:flex;justify-content:space-between;align-items:start;gap:12px;max-width:1000px;margin:0 auto 20px}
 #webModelsView h2{margin:0 0 7px;font-size:23px;font-weight:700}
@@ -40,3 +39,10 @@
 #mlist .web-popup-model small{display:block;color:#abc0e5;margin-top:4px}
 .web-model-legacy-notice{border:1px solid #30476e;border-radius:9px;background:#131f37;padding:11px;margin:10px 0;font:12px/1.5 system-ui;color:#bed0eb}
 @media(max-width:760px){#webModelsView.on{padding:16px!important}.web-model-dialog .web-row{flex-wrap:wrap}#webSettingsModels .web-models-grid{grid-template-columns:1fr}}
+
+/* Model library is a Settings pane, not a separate workspace route. */
+#webSettingsModels{width:100%;max-width:960px;min-width:0}
+#webSettingsModels .web-settings-actions{display:flex;align-items:center;gap:9px;margin:14px 0 12px;flex-wrap:wrap}
+#webSettingsModels #web-model-feedback{margin:10px 0 12px;max-width:none}
+#webSettingsModels .web-models-grid{max-width:none;margin:12px 0;grid-template-columns:repeat(auto-fit,minmax(min(100%,255px),1fr));gap:13px}
+#webSettingsModels .web-empty{margin:22px 0 10px;padding:30px 18px;border:1px dashed var(--ui-border,#334365);border-radius:12px;background:var(--ui-surface,#131f37);max-width:none}
