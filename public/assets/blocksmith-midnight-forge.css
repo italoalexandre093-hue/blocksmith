@@ -1,0 +1,400 @@
+/*
+ * Blocksmith Studio Web — MIDNIGHT FORGE
+ * A cohesive black / white / deep navy visual system.
+ * Applies to the legacy iframe UI, the Models manager, settings and dialogs.
+ * Styling only: no alteration to provider, chat, history or bridge logic.
+ */
+:root { color-scheme: dark; }
+html, body, #vis-container { background-color: #05070d !important; }
+#app.app,
+#app.app[data-theme="dark"],
+#app.app[data-theme="white"],
+#app.app[data-theme="gray"] {
+  --bg: #05070d !important;
+  --s1: #0b1120 !important;
+  --s2: #101a30 !important;
+  --s3: #172644 !important;
+  --bd: #1a2a46 !important;
+  --bd2: #2b426e !important;
+  --tx: #f5f8ff !important;
+  --tx2: #bdc9df !important;
+  --tx3: #8699bd !important;
+  --midnight-black: #05070d;
+  --midnight-deep: #080e1c;
+  --midnight-surface: #101b32;
+  --midnight-navy: #1b3975;
+  --midnight-highlight: #315cad;
+  --midnight-border: #263c62;
+  --midnight-white: #f5f8ff;
+  background: #05070d !important;
+  color: #f5f8ff !important;
+  font-family: Inter, "Segoe UI Variable", "Segoe UI", system-ui, sans-serif;
+  border-color: #182947 !important;
+}
+#app.app[data-theme="gray"] {
+  --s1: #0c1426 !important;
+  --s2: #15223b !important;
+  --s3: #1b2b4a !important;
+}
+#app.app[data-theme="white"] {
+  --s1: #101a2d !important;
+  --s2: #172644 !important;
+  --s3: #20365e !important;
+}
+#app.app * { scrollbar-color: #2b477a #090e1b; }
+#app.app *::-webkit-scrollbar { width: 8px; height: 8px; }
+#app.app *::-webkit-scrollbar-track { background: #080d18; border-radius: 12px; }
+#app.app *::-webkit-scrollbar-thumb { background: #263e6c; border-radius: 12px; border: 2px solid #080d18; }
+#app.app *::-webkit-scrollbar-thumb:hover { background: #355899; }
+#app.app *::selection { background: #294d91; color: #fff; }
+
+/* Identity: architectural left rail and clear active navigation. */
+#app.app .sd {
+  background:
+    radial-gradient(ellipse 160% 85% at -35% -20%, rgba(46,85,164,.22), transparent 60%),
+    linear-gradient(168deg, #0b1326 0%, #080e1b 63%, #060a14 100%) !important;
+  border-right: 1px solid #23385d !important;
+  box-shadow: 12px 0 38px rgba(0,0,0,.2), inset -1px 0 rgba(255,255,255,.025);
+}
+#app.app .brand { padding: 5px 1px 10px; }
+#app.app .word {
+  color: #fff !important;
+  letter-spacing: -.035em;
+  font-weight: 760;
+}
+#app.app .mark {
+  background: linear-gradient(140deg, #315cab, #132d63) !important;
+  border: 1px solid #5d7fc1;
+  border-radius: 11px;
+  box-shadow: inset 0 1px rgba(255,255,255,.18), 0 8px 18px rgba(15,44,114,.36) !important;
+}
+#app.app .mark svg { stroke: #fff !important; }
+#app.app .mark svg [fill] { fill: rgba(255,255,255,.09) !important; }
+#app.app .tgl,
+#app.app .iconb { color: #93a9d0 !important; }
+#app.app .tgl:hover,
+#app.app .iconb:hover { background: #1a2d52 !important; color: #fff !important; }
+#app.app .newc {
+  background: linear-gradient(110deg,#16315f,#10264a) !important;
+  border: 1px solid #2f5291 !important;
+  border-radius: 11px;
+  color: #f6f9ff !important;
+  box-shadow: inset 0 1px rgba(255,255,255,.07), 0 9px 22px rgba(0,0,0,.18);
+}
+#app.app .newc i { color: #c6d7fa !important; }
+#app.app .newc:hover {
+  background: linear-gradient(110deg,#204684,#193868) !important;
+  border-color: #5076bc !important;
+}
+#app.app .nav,
+#app.app .tree-chat,
+#app.app .tree-row { color: #acbbd6 !important; border-radius: 9px; }
+#app.app .nav:hover,
+#app.app .tree-chat:hover,
+#app.app .tree-row:hover { background: #142546 !important; color: #f5f8ff !important; }
+#app.app .nav.act,
+#app.app .tree-chat.act {
+  background: linear-gradient(100deg, #1c3769, #142847) !important;
+  color: #fff !important;
+  box-shadow: inset 3px 0 #4d7bd2, inset 0 0 0 1px rgba(79,121,204,.12);
+}
+#app.app .nav.act i, #app.app .tree-chat.act i,
+#app.app .nav:hover i { color: #a6c1fd !important; }
+#app.app .tree-name,
+#app.app .project-tree .tree-name,
+#app.app .chat-list .tree-name { color: #dce6fa !important; }
+#app.app .tree-empty { color: #899dbf !important; }
+#app.app .tree-caret,
+#app.app .tree-plus,
+#app.app .tree-more { color: #91a7ca !important; }
+#app.app .tree-plus:hover,
+#app.app .tree-more:hover { background: #243d6e !important; color: #fff !important; }
+#app.app .settings-btn {
+  color: #c1cfee !important;
+  background: #0f1d37 !important;
+  border: 1px solid #213a66 !important;
+  border-radius: 10px;
+}
+#app.app .settings-btn:hover,
+#app.app .settings-btn.act { background: #203b70 !important; color: #fff !important; }
+
+/* Main workspace: near-black canvas, controlled midnight-blue light. */
+#app.app .rp {
+  background:
+    radial-gradient(ellipse 55% 42% at 85% 0%, rgba(25,54,114,.19), transparent 75%),
+    radial-gradient(ellipse 52% 35% at 8% 99%, rgba(15,36,82,.13), transparent 85%),
+    #05070d !important;
+}
+#app.app .msgs { color: #f6f9ff !important; }
+#app.app .msgs.still { color: #d9e4f9 !important; }
+#app.app .u {
+  background: linear-gradient(160deg,#17315d,#112346) !important;
+  border: 1px solid #365488 !important;
+  color: #f7f9ff !important;
+  box-shadow: 0 7px 20px rgba(0,0,0,.17);
+}
+#app.app .a { color: #d9e3f7 !important; }
+#app.app .ua, #app.app .ua span { color: #adbfdf !important; }
+#app.app .comp {
+  background: linear-gradient(165deg,#0f192d,#0a1120) !important;
+  border: 1px solid #2b426c !important;
+  box-shadow: 0 18px 52px rgba(0,0,0,.4), inset 0 1px rgba(255,255,255,.038) !important;
+}
+#app.app .comp:focus-within { border-color: #4671c4 !important; box-shadow: 0 12px 42px rgba(10,25,62,.45), 0 0 0 2px rgba(65,103,188,.12) !important; }
+#app.app .ed, #app.app .ed[contenteditable] { color: #f3f7ff !important; }
+#app.app .ed:empty::before, #app.app [data-ph]:empty::before { color: #8294b4 !important; }
+#app.app .sb { border-color: #263b60 !important; color: #a7bce2 !important; }
+#app.app .send {
+  background: linear-gradient(150deg,#2d559f,#1c3976) !important;
+  color: #fff !important;
+  box-shadow: 0 6px 16px rgba(17,50,121,.35);
+}
+#app.app .send:hover, #app.app .send.on { background: linear-gradient(150deg,#3c69ba,#294d97) !important; color: #fff !important; }
+#app.app .chip, #app.app .mode-btn,
+#app.app .thumb-chip { color: #dce7fc !important; }
+#app.app .chip:hover,
+#app.app .thumb-chip:hover { background: #182e55 !important; }
+#app.app .chat-context { color: #9fb4d9 !important; }
+#app.app #chipName, #app.app[data-theme="white"] #chipName { color: #f5f8ff !important; }
+#app.app #chipEff { color: #9db6e0 !important; }
+
+/* Settings and built-in sections. */
+#app.app .panel-view.on,
+#app.app #settingsView,
+#app.app .cli-manager {
+  color: #f5f8ff !important;
+  background: transparent !important;
+}
+#app.app .panel-head { border-color: #1d3154 !important; }
+#app.app .panel-title,
+#app.app .settings-pane-title { color: #fff !important; letter-spacing: -.025em; }
+#app.app .panel-sub,
+#app.app .settings-pane-sub { color: #a4b6d4 !important; }
+#app.app .settings-tabs { border-color: #23395f !important; background: rgba(8,16,31,.55) !important; }
+#app.app .settings-tab {
+  color: #b3c2de !important;
+  border-color: transparent !important;
+  border-radius: 9px !important;
+  transition: background .14s ease, color .14s ease;
+}
+#app.app .settings-tab:hover { color: #fff !important; background: #182d52 !important; }
+#app.app .settings-tab.act {
+  color: #fff !important;
+  background: linear-gradient(90deg,#1b396e,#152a4d) !important;
+  box-shadow: inset 3px 0 #567cc7, 0 4px 12px rgba(0,0,0,.14);
+}
+#app.app .settings-pane,
+#app.app .settings-body { color: #ebf1ff !important; }
+#app.app .settings-label,
+#app.app .setting-row label,
+#app.app .settings-group-title { color: #f2f6ff !important; }
+#app.app .settings-tool,
+#app.app .setting-row,
+#app.app .settings-group { border-color: #253858 !important; }
+#app.app .settings-tool strong,
+#app.app .settings-row strong,
+#app.app .install-body strong { color: #eff5ff !important; }
+#app.app .settings-tool small,
+#app.app .setting-row small,
+#app.app .install-body small,
+#app.app .settings-group-sub { color: #a3b4d3 !important; }
+#app.app .settings-input,
+#app.app .settings-textarea,
+#app.app .tree-name-input,
+#app.app input[type="text"],
+#app.app input[type="password"],
+#app.app textarea,
+#app.app select {
+  background-color: #090f1d !important;
+  color: #eff5ff !important;
+  border-color: #263d66 !important;
+}
+#app.app input::placeholder,
+#app.app textarea::placeholder { color: #788db5 !important; }
+#app.app input:focus,
+#app.app textarea:focus,
+#app.app select:focus { outline-color: #4b73c2 !important; border-color: #5279c4 !important; }
+#app.app .setting-check,
+#app.app input[type="checkbox"],
+#app.app input[type="range"] { accent-color: #345da9 !important; }
+#app.app .install-card,
+#app.app .settings-card {
+  background: linear-gradient(145deg,#101b33,#0d1527) !important;
+  border-color: #263d68 !important;
+}
+#app.app .install-btn,
+#app.app .panel-close,
+#app.app .seg-btn,
+#app.app .theme-option,
+#app.app .text-size-btn {
+  background-color: #142444 !important;
+  border-color: #294572 !important;
+  color: #e5efff !important;
+}
+#app.app .install-btn:hover,
+#app.app .panel-close:hover,
+#app.app .seg-btn:hover,
+#app.app .theme-option:hover,
+#app.app .text-size-btn:hover { background-color: #1e3868 !important; color: #fff !important; }
+#app.app .seg-btn.act,
+#app.app .theme-option.act {
+  background: linear-gradient(125deg,#1d3b74,#152d56) !important;
+  border-color: #486eb4 !important;
+  color: #fff !important;
+}
+#app.app .theme-swatch.dark { background: linear-gradient(135deg,#05070d 50%,#1a3971 50%) !important; }
+#app.app .theme-swatch.gray { background: linear-gradient(135deg,#0b1425 50%,#284578 50%) !important; }
+#app.app .theme-swatch.white { background: linear-gradient(135deg,#f5f8ff 42%,#101e37 42%) !important; }
+#app.app .accent-custom { display: none !important; } /* Keep the palette exclusively blue-toned. */
+#app.app .accent-btn.act,
+#app.app .accent-btn[aria-pressed="true"] { border-color: #e3edff !important; }
+#app.app .ap-preview,
+#app.app .preview-pane { background: linear-gradient(135deg,#0a1223,#14284d) !important; border-color: #304a76 !important; }
+
+/* Popovers, search, dropdown, CLI manager: consistent dark navy. */
+#app.app .pop,
+#app.app .mpop,
+#app.app .apop,
+#app.app .tree-menu,
+#app.app .cli-manager,
+#app.app .menu,
+#app.app .dropdown {
+  background: #0d182c !important;
+  color: #e5edff !important;
+  border-color: #304a73 !important;
+  box-shadow: 0 20px 58px rgba(0,0,0,.52), 0 0 0 1px rgba(64,101,166,.10) !important;
+}
+#app.app .orow:hover,
+#app.app .pop button:hover,
+#app.app .mpop button:hover,
+#app.app .apop button:hover { background: #19335f !important; color: #fff !important; }
+#app.app .orow.danger { color: #c8d7f5 !important; }
+#app.app .orow.danger:hover { background: #1c3461 !important; color: #fff !important; }
+#app.app .cli-manager .cli-card,
+#app.app .cli-manager .install-card { background: #101e38 !important; border-color: #304a73 !important; }
+#app.app :is(button, [role="button"], input, select, textarea, [contenteditable]):focus-visible,
+.web-model-dialog :is(button,input,select):focus-visible {
+  outline: 2px solid #6991d9 !important;
+  outline-offset: 2px !important;
+}
+
+/* Models interface: remove every old green success/button/background element. */
+#app #webModelsView.on {
+  color: #f5f8ff !important;
+  background:
+    radial-gradient(ellipse 60% 35% at 88% 0%,rgba(32,66,135,.23),transparent 75%),
+    #060a13 !important;
+  padding: 28px 32px !important;
+}
+#app #webModelsView h2 { color: #fff !important; font-size: 25px; letter-spacing: -.045em; }
+#app #webModelsView p,
+#app #webModelsView .web-empty,
+#app #web-model-feedback { color: #acbedf !important; }
+#app #webModelsView .web-empty-icon { color: #6e95df !important; }
+#app .web-models-grid { gap: 15px; }
+#app .web-model-card {
+  background: linear-gradient(150deg,#111e37,#0c1527) !important;
+  border: 1px solid #29436c !important;
+  border-radius: 13px;
+  box-shadow: inset 0 1px rgba(255,255,255,.025),0 12px 28px rgba(0,0,0,.17);
+}
+#app .web-model-card:hover { border-color: #466bb1 !important; transform: translateY(-1px); transition: border-color .16s,transform .16s; }
+#app .web-model-card strong { color: #f5f8ff !important; }
+#app .web-model-card small { color: #a8bcde !important; }
+#app .web-model-legacy-notice {
+  background: #101e39 !important;
+  color: #cad8f0 !important;
+  border-color: #304978 !important;
+}
+
+/* Dynamic Add model modal is appended outside #app, so its styles are global. */
+body .web-model-dialog-backdrop { background: rgba(1,3,9,.82) !important; backdrop-filter: blur(8px); }
+body .web-model-dialog {
+  background: #0c1426 !important;
+  border: 1px solid #334e7b !important;
+  color: #f5f8ff !important;
+  box-shadow: 0 32px 100px rgba(0,0,0,.7), 0 0 0 1px rgba(77,111,185,.15) !important;
+}
+body .web-model-dialog .web-dialog-title {
+  background: linear-gradient(90deg,#122347,#0c172d) !important;
+  color: #fff !important;
+  border-bottom: 1px solid #2c436c;
+  letter-spacing: -.015em;
+}
+body .web-model-dialog .web-dialog-body {
+  background: #080f1e !important;
+  border-color: #243a62 !important;
+}
+body .web-model-dialog .web-dialog-footer { border-top: 1px solid #23385d; background: #0b162b; }
+body .web-model-dialog .web-dialog-field,
+body .web-model-dialog .web-dialog-note { color: #d8e4fa !important; }
+body .web-model-dialog input,
+body .web-model-dialog select {
+  background: #080f1e !important;
+  color: #f7faff !important;
+  border-color: #2d4673 !important;
+}
+body .web-model-dialog input:focus,
+body .web-model-dialog select:focus { border-color: #668cce !important; }
+body .web-model-dialog input::placeholder { color: #8296bc !important; }
+body .web-model-dialog .web-note { color: #a7badc !important; }
+body .web-model-dialog .web-error { color: #d5e3fd !important; }
+#app .web-btn,
+body .web-model-dialog .web-btn {
+  background: #152849 !important;
+  border: 1px solid #304c7e !important;
+  color: #eaf2ff !important;
+  border-radius: 9px;
+  font-weight: 650;
+  transition: background .15s,border-color .15s,transform .15s;
+}
+#app .web-btn:hover,
+body .web-model-dialog .web-btn:hover { background: #254477 !important; border-color: #5377ba !important; }
+#app .web-btn-primary,
+body .web-model-dialog .web-btn-primary {
+  background: linear-gradient(130deg,#315da9,#214681) !important;
+  color: #fff !important;
+  border-color: #5279c0 !important;
+  box-shadow: inset 0 1px rgba(255,255,255,.14),0 6px 20px rgba(11,39,92,.27);
+}
+#app .web-btn-primary:hover,
+body .web-model-dialog .web-btn-primary:hover { background: linear-gradient(130deg,#436fbd,#2b5698) !important; }
+#app .web-btn-danger,
+body .web-model-dialog .web-btn-danger { background: #142341 !important; color: #dfeaff !important; border-color: #49679f !important; }
+#app #mlist .web-popup-model {
+  background: #0e1b32 !important;
+  color: #eaf3ff !important;
+  border-color: #2b4168 !important;
+}
+#app #mlist .web-popup-model:hover { background: #193361 !important; }
+#app #mlist .web-popup-model small { color: #adc0e3 !important; }
+
+/* Align charts, sliders, secondary decorations with the same ink. */
+#app .install-prog-fill,
+#app .setting-range::-webkit-slider-thumb,
+#app .range-fill { background-color: #456dba !important; }
+#app .theme-option .theme-swatch { border-color: #3c5381 !important; }
+#app .pi,
+#app .thumb-chip .tv,
+#app .settings-group-sub { color: #b7c7e5 !important; }
+#app [style*="color:#f07a1a"],
+#app [style*="color: #f07a1a"] { color: #7399e8 !important; }
+#app .brand.claude,
+#app .brand.blend,
+#app .install-ic { background-color: #152b51 !important; }
+#app .brand svg[data-brand],
+#app .install-ic svg[data-brand] { filter: grayscale(1) brightness(1.55) contrast(.92); }
+
+/* Responsive design & reduced motion: no layout or touch-target regression. */
+@media (max-width: 760px) {
+  #app #webModelsView.on { padding: 16px !important; }
+  #app.app .sd { box-shadow: none; }
+  #app.app .settings-tabs { background: rgba(8,16,31,.6) !important; }
+  #app.app .settings-tab.act { box-shadow: inset 0 -3px #668cce; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #app .web-model-card,
+  #app .web-btn,
+  #app.app .nav,
+  #app.app .newc { transition: none !important; transform: none !important; }
+}
