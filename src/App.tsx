@@ -9,7 +9,7 @@ const FULLSCREEN_OVERRIDE_CSS = `
     margin: 0 !important;
     padding: 0 !important;
     overflow: hidden !important;
-    background: #0b0b0c !important;
+    background: #05070d !important;
   }
   #vis-container {
     width: 100% !important;
@@ -60,6 +60,23 @@ export default function App() {
         doc.head.appendChild(styleEl);
       }
 
+      // Global Midnight Forge skin. Loaded after the original iframe and Models
+      // styles so that every web view shares one black/white/deep-blue palette.
+      if (doc.head && !doc.getElementById('blocksmith-midnight-forge-style')) {
+        const themeStyle = doc.createElement('link');
+        themeStyle.id = 'blocksmith-midnight-forge-style';
+        themeStyle.rel = 'stylesheet';
+        themeStyle.href = '/assets/blocksmith-midnight-forge.css?v=1';
+        doc.head.appendChild(themeStyle);
+      }
+      if (doc.body && !doc.getElementById('blocksmith-midnight-forge-script')) {
+        const themeScript = doc.createElement('script');
+        themeScript.id = 'blocksmith-midnight-forge-script';
+        themeScript.src = '/assets/blocksmith-midnight-forge.js?v=1';
+        themeScript.async = false;
+        doc.body.appendChild(themeScript);
+      }
+
       // Enhance the hosted web preview without touching the Electron source.
       if (doc.head && !doc.getElementById('blocksmith-web-models-style')) {
         const modelsStyle = doc.createElement('link');
@@ -87,7 +104,7 @@ export default function App() {
   }, []);
 
   return (
-    <main className="fixed inset-0 w-screen h-screen overflow-hidden bg-[#0b0b0c]">
+    <main className="fixed inset-0 w-screen h-screen overflow-hidden bg-[#05070d]">
       <iframe
         ref={iframeRef}
         src={BLOCKSMITH_HTML_PATH}
