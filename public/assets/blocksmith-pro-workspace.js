@@ -13,6 +13,10 @@
   var composer = document.getElementById('comp');
   if (!app || !sidebar || !main || !messages || !editor || !composer) return;
   if (document.getElementById('bsProfessionalTopbar')) return;
+  // Correct inherited copy from the original template without changing editor behavior.
+  editor.setAttribute('data-ph', 'Descreva o que você quer criar no Blocksmith...');
+  var newChatText = document.querySelector('#newChat span');
+  if (newChatText) newChatText.textContent = 'Novo chat';
 
   function el(tag, className, label) {
     var node = document.createElement(tag);
