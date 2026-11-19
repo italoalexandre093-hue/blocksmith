@@ -38,35 +38,14 @@ function updateChip(){
 }
 var baseRenderChip=window.renderChip;
 if(typeof baseRenderChip==='function')window.renderChip=function(){baseRenderChip();updateChip();};
-var oldHide=window.hidePanels;
-var nav=node('div','nav','');nav.id='web-models-nav';nav.tabIndex=0;nav.setAttribute('role','button');nav.title='Models';nav.setAttribute('aria-label','Models');
-nav.innerHTML='<i class="ti ti-robot" aria-hidden="true"></i><span>Models</span>';
-var navlist=$('projectTree')?.parentElement;
-if(navlist)navlist.insertBefore(nav,navlist.firstChild);
-['tabClaude','tabOpenai','tabCompat'].forEach(function(id){var tab=$(id);if(tab){tab.style.display='none';tab.setAttribute('aria-hidden','true');}});
-var rp=$('rp'),view=node('section','panel-view');view.id='webModelsView';
-view.innerHTML='<div class="web-header"><div><h2>Models</h2><p>Gerencie seus modelos personalizados e suas próprias chaves de API.</p></div><div><button type="button" class="web-btn web-btn-primary" id="webModelsAddTop">+ Add model</button><button type="button" class="web-btn" id="webModelsBack" style="margin-left:8px">Voltar</button></div></div><div id="web-model-feedback" role="status"></div><div id="webModelsContent"></div>';
-rp.insertBefore(view,$('settingsView'));
-if(typeof oldHide==='function')window.hidePanels=function(){oldHide();view.classList.remove('on');nav.classList.remove('act');};
-function showModels(){
- if(typeof window.saveCurrentChat==='function')window.saveCurrentChat();
- window.hidePanels();rp.classList.add('panel-open');view.classList.add('on');nav.classList.add('act');
- $('settingsBtn')?.classList.remove('act');
- if(typeof window.setNav==='function')window.setNav(null);
- renderModels();
-}
-function returnChat(){window.hidePanels();if(typeof window.setNav==='function'&&typeof window.navKey==='function')window.setNav(window.navKey(window.cur));}
-nav.addEventListener('click',showModels);
-nav.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();showModels();}});
-$('webModelsBack').addEventListener('click',returnChat);
-$('webModelsAddTop').addEventListener('click',openModal);
+// Models is managed exclusively in Configurações → Models.
+// The chat's model picker remains available for selecting a configured model.
 var oldTab=document.querySelector('[data-settings-tab="openai"]');
 var settingsPane=document.querySelector('[data-settings-pane="openai"]');
 if(oldTab)oldTab.textContent='Models';
 if(settingsPane){
- settingsPane.innerHTML='<div id="webSettingsModels"><div class="settings-pane-title">Models</div><div class="settings-pane-sub">Configure provedores e modelos; as chaves ficam somente nesta sessão do navegador.</div><button type="button" class="web-btn web-btn-primary" id="webSettingsAdd">+ Add model</button><button type="button" class="web-btn" id="webSettingsOpen">Abrir biblioteca</button><div id="webSettingsCards"></div></div>';
+ settingsPane.innerHTML='<div id="webSettingsModels"><div class="settings-pane-title">Models</div><div class="settings-pane-sub">Gerencie seus provedores, modelos e seleção para o chat em um único lugar. As chaves de API permanecem somente nesta sessão do navegador.</div><div class="web-settings-actions"><button type="button" class="web-btn web-btn-primary" id="webSettingsAdd">+ Add model</button></div><div id="web-model-feedback" role="status" aria-live="polite"></div><div id="webSettingsCards"></div></div>';
  $('webSettingsAdd').addEventListener('click',openModal);
- $('webSettingsOpen').addEventListener('click',showModels);
 }
 var overlay=node('div','web-model-dialog-backdrop');overlay.id='webModelBackdrop';overlay.setAttribute('role','presentation');
 overlay.innerHTML='<div class="web-model-dialog" role="dialog" aria-modal="true" aria-labelledby="webModalTitle"><div class="web-dialog-title"><span id="webModalTitle">Add model</span><button class="web-btn" type="button" id="webModalClose" aria-label="Fechar">✕</button></div><form id="webModelForm"><div class="web-dialog-body">'+
@@ -232,14 +211,22 @@ function renderCollection(root){
  root.appendChild(grid);
 }
 function renderModels(){
- if($('webModelsContent'))renderCollection($('webModelsContent'));
  if($('webSettingsCards'))renderCollection($('webSettingsCards'));
 }
 function renderPopup(){
  var list=$('mlist');if(!list)return;
  list.textContent='';
  var found=models.filter(function(m){return (m.modelId+' '+LABELS[m.provider]).toLowerCase().includes(search);});
- if(!found.length){list.appendChild(node('div','web-model-legacy-notice','Nenhum modelo cadastrado. Abra a aba Models.'));return;}
+ if(!found.length){
+  list.appendChild(node('div','web-model-legacy-notice','Nenhum modelo cadastrado. Vá em Configurações → Models para adicionar.'));
+  var manage=node('button','web-btn','Abrir Configurações → Models');manage.type='button';
+  manage.addEventListener('click',function(){
+   if($('pop'))$('pop').style.display='none';
+   if($('settingsBtn'))$('settingsBtn').click();
+   var tab=document.querySelector('[data-settings-tab="openai"]');if(tab)tab.click();
+  });
+  list.appendChild(manage);return;
+ }
  found.forEach(function(m){
   var button=node('button','web-popup-model',m.modelId);
   var sub=node('small','',LABELS[m.provider]);button.appendChild(sub);
@@ -268,10 +255,10 @@ async function sendWebChat(){
  var key=window.cur,chat=window.chats[key],input=$('inp'),value=(input.textContent||'').trim(),m=selectedModel();
  if(!chat||chat.busy||!value)return;
  if(window.files&&window.files.length){addChatMessage(key,'a','Anexos ainda não são enviados pelo site. Use o Blocksmith Desktop para trabalhar com arquivos.');return;}
- if(!m){addChatMessage(key,'a','Abra Models → Add model, cadastre um modelo e selecione Usar no chat.');return;}
+ if(!m){addChatMessage(key,'a','Abra Configurações → Models, adicione um modelo e selecione Usar no chat.');return;}
  var apiKey=keyFor(m);
  if(!apiKey&&m.provider!=='compatible'&&m.provider!=='anthropic-compatible'){
-  addChatMessage(key,'a','A API key deste provedor não está nesta sessão. Abra Models e cadastre novamente a chave.');return;
+  addChatMessage(key,'a','A API key deste provedor não está nesta sessão. Abra Configurações → Models e cadastre novamente a chave.');return;
  }
  addChatMessage(key,'u',value);input.textContent='';
  if(typeof window.updSend==='function')window.updSend();
