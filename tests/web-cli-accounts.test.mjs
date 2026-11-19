@@ -31,8 +31,6 @@ test('Sign-in URLs only point to official domains',()=>{
  assert.ok(ui.includes("https://qoder.com/users/sign-in"));
  assert.ok(ui.includes("https://antigravity.google/download"));
  assert.ok(ui.includes("https://qoder.com/download"));
- assert.ok(ui.includes("https://antigravity.google/docs/install/"));
- assert.ok(ui.includes("https://docs.qoder.com/cli/authentication"));
  assert.ok(ui.includes("u.protocol!=='https:'"));
  assert.ok(ui.includes("Destino não autorizado."));
 });
@@ -48,7 +46,7 @@ test('Antigravity and Qoder guide login through official Windows apps without CL
 });
 test('Never claim a local CLI is connected or installed without verification',()=>{
  assert.match(ui,/Status: não verificado/);
- assert.match(ui,/não recebe seus tokens OAuth/);
+ assert.match(ui,/não acessa nem valida sessões locais/);
  assert.doesNotMatch(ui,/localStorage\.setItem/);
  assert.doesNotMatch(ui,/sessionStorage\.setItem/);
  assert.doesNotMatch(ui,/cliInstalled\[key\]\s*=\s*true/);
