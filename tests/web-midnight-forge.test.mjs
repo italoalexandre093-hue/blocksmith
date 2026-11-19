@@ -39,11 +39,11 @@ test('React shell loads Midnight Forge AFTER Models styles', () => {
   assert.ok(app.includes('blocksmith-midnight-forge.js?v=1'));
   assert.ok(app.indexOf('blocksmith-web-models-style') < app.indexOf('blocksmith-midnight-forge-style'));
   assert.ok(app.includes('blocksmith-web-history.js'));
-  assert.ok(app.includes('#05070d'));
+  assert.ok(app.includes('#080808'));
   assert.ok(shell.includes('#05070d'));
 });
 
-test('appearance palette initializes blue without altering chat state', () => {
+test('appearance palette initializes white without altering chat state', () => {
   assert.doesNotThrow(() => new vm.Script(setup));
   const accentCalls = [];
   const attrs = {};
@@ -56,8 +56,8 @@ test('appearance palette initializes blue without altering chat state', () => {
     querySelector() { return null; }
   };
   vm.runInNewContext(setup, { window: win, document: doc, Array, String, queueMicrotask });
-  assert.equal(accentCalls.at(-1), '#315DA9');
-  assert.equal(attrs['data-design'], 'midnight-forge');
+  assert.equal(accentCalls.at(-1), '#FFFFFF');
+  assert.equal(attrs['data-design'], 'monochrome');
   assert.ok(win.ACCENTS.every(([hex]) => /^#[0-9a-f]{6}$/i.test(hex) && hex !== '#ff7700'));
   assert.ok(!setup.includes('localStorage'));
   assert.ok(!setup.includes('sessionStorage'));
@@ -67,5 +67,5 @@ test('all three appearance theme options stay accessible', () => {
   for (const name of ['dark', 'white', 'gray']) {
     assert.ok(skin.includes('data-theme="' + name + '"'));
   }
-  for (const label of ['Midnight', 'Obsidian', 'Navy']) assert.ok(setup.includes(label));
+  for (const label of ['Preto', 'Preto e branco', 'Grafite']) assert.ok(setup.includes(label));
 });

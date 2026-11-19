@@ -2,7 +2,7 @@
  * Blocksmith Color Studio — overrides the fixed Midnight Forge hue using
  * named, user-selectable palettes. Scoped to appearance; no chat or API data.
  */
-#app.app, body { --ui-bg:#0b0716; --ui-side:#130e27; --ui-surface:#1a1430; --ui-raised:#241b43; --ui-border:#403167; --ui-accent:#8055d8; --ui-accent-rgb:128,85,216; }
+#app.app, body { --ui-bg:#080808; --ui-side:#101010; --ui-surface:#191919; --ui-raised:#262626; --ui-border:#383838; --ui-accent:#ffffff; --ui-accent-rgb:255,255,255; }
 
 /* Main UI surfaces take the active palette, not the original forced blue. */
 html:has(#app.app), body:has(#app.app), #vis-container:has(#app.app) { background:var(--ui-bg) !important; }
