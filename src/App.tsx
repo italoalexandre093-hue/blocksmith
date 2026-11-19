@@ -59,6 +59,14 @@ export default function App() {
         styleEl.textContent = FULLSCREEN_OVERRIDE_CSS;
         doc.head.appendChild(styleEl);
       }
+
+      // Enhance the hosted web preview without touching the Electron source.
+      if (doc.body && !doc.getElementById('blocksmith-web-history-script')) {
+        const historyScript = doc.createElement('script');
+        historyScript.id = 'blocksmith-web-history-script';
+        historyScript.src = '/assets/blocksmith-web-history.js';
+        doc.body.appendChild(historyScript);
+      }
     } catch {
       // Ignore cross-origin access errors if ever served from a different origin
     }
