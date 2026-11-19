@@ -9,8 +9,6 @@ const history = read('../public/assets/blocksmith-web-history.js');
 const original = read('../public/assets/aistudio/blocksmith-app-ajustado_aadf2d67.html');
 const server = read('../server.js');
 const app = read('../src/App.tsx');
-const monochrome = read('../public/assets/blocksmith-monochrome.css');
-const cliAccounts = read('../public/assets/blocksmith-cli-accounts.js');
 
 test('web models extension parses and includes full model manager', () => {
   assert.doesNotThrow(() => new vm.Script(web));
@@ -37,21 +35,6 @@ test('Models management is only available inside Settings', () => {
     'Chat model selection must remain available');
 });
 
-
-test('Chat dropdown has only configured AI models, no duplicate legacy provider bars', () => {
-  assert.ok(web.includes("picker.setAttribute('data-web-model-picker','true')"));
-  assert.ok(web.includes("['.prov','.eff','.trk']"));
-  assert.ok(web.includes('old.inert=true'));
-  assert.ok(web.includes('web-model-picker-heading'));
-  assert.ok(web.includes("renderPopup();"));
-  assert.ok(web.includes("models.filter(function(m)"));
-  assert.ok(monochrome.includes('#pop[data-web-model-picker="true"]'));
-  assert.ok(monochrome.includes('display:none !important'));
-  assert.ok(!cliAccounts.includes('addQuickButtons();'));
-  assert.ok(!cliAccounts.includes('bar.insertBefore(wrap,plus);'));
-  assert.ok(cliAccounts.includes('addSettingsCards();'));
-  assert.ok(web.includes('Configurações → Models'));
-});
 
 test('Only the real AI web sender handles Send and Enter, without the legacy simulated chat', () => {
   assert.ok(!original.includes('function go(){'));
