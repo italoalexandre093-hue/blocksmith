@@ -164,6 +164,17 @@ function addQuickButtons(){
   wrap.appendChild(button);
  });
  bar.insertBefore(wrap,plus);
+ // The legacy embedded HTML ships three extra provider tabs (Claude, OpenAI,
+ // Compatible) that duplicate this row. Hide ONLY those obsolete buttons.
+ // Keep the four official tool launchers, the + button, model search/list
+ // and the Low/effort control intact.
+ Array.from(bar.querySelectorAll(':scope > .pb')).forEach(function(legacy){
+  legacy.hidden=true;
+  legacy.inert=true;
+  legacy.tabIndex=-1;
+  legacy.setAttribute('aria-hidden','true');
+ });
+ bar.setAttribute('data-deduplicated-providers','true');
 }
 function addSettingsCards(){
  var pane=document.querySelector('[data-settings-pane="clis"]');if(!pane)return;
