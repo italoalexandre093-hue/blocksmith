@@ -1,42 +1,42 @@
 
 /* Blocksmith Web Models: follows the desktop's dark model-manager visual language. */
 #web-models-nav{margin:4px 8px 10px;cursor:pointer}
-#webModelsView.on{display:block!important;overflow:auto;min-width:0;padding:24px 28px!important;color:#eaf2ed;background:#121c18}
+#webModelsView.on{display:block!important;overflow:auto;min-width:0;padding:24px 28px!important;color:#f5f8ff;background:#080e1c}
 #webModelsView .web-header{display:flex;justify-content:space-between;align-items:start;gap:12px;max-width:1000px;margin:0 auto 20px}
 #webModelsView h2{margin:0 0 7px;font-size:23px;font-weight:700}
-#webModelsView p{color:#83a89a;font-size:13px;margin:0}
-#webModelsView .web-empty{margin:60px auto;max-width:550px;text-align:center;color:#a7bcb3;line-height:1.6}
-#webModelsView .web-empty .web-empty-icon{font-size:40px;color:#7cb9a2;margin-bottom:12px}
+#webModelsView p{color:#a9bddf;font-size:13px;margin:0}
+#webModelsView .web-empty{margin:60px auto;max-width:550px;text-align:center;color:#b5c8e6;line-height:1.6}
+#webModelsView .web-empty .web-empty-icon{font-size:40px;color:#7395d3;margin-bottom:12px}
 .web-models-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px;max-width:1000px;margin:12px auto}
-.web-model-card{border:1px solid #293d34;background:#14211b;padding:16px;border-radius:12px;min-width:0}
-.web-model-card strong{display:block;color:#edf6f0;font-size:14px;overflow-wrap:anywhere}
-.web-model-card small{display:block;margin:7px 0 14px;font-size:12px;color:#93b6a5}
+.web-model-card{border:1px solid #263f68;background:#101c35;padding:16px;border-radius:12px;min-width:0}
+.web-model-card strong{display:block;color:#f5f8ff;font-size:14px;overflow-wrap:anywhere}
+.web-model-card small{display:block;margin:7px 0 14px;font-size:12px;color:#b2c5e7}
 .web-model-card .web-actions{display:flex;gap:8px;flex-wrap:wrap}
-.web-btn{font:600 12px/1.25 system-ui,sans-serif;border:1px solid #395c4d;border-radius:8px;background:#1e3027;color:#e0f4e9;padding:9px 12px;cursor:pointer}
-.web-btn:hover{background:#2a4436}
-.web-btn-primary{background:#68d2ae;color:#09261c;border-color:#68d2ae}
-.web-btn-primary:hover{background:#8ae8c4}
-.web-btn-danger{color:#ffafa8;background:#35201f;border-color:#5e3532}
-#webModelsView button:focus-visible,.web-model-dialog button:focus-visible,.web-model-dialog input:focus-visible,.web-model-dialog select:focus-visible{outline:2px solid #6ce5b5;outline-offset:2px}
+.web-btn{font:600 12px/1.25 system-ui,sans-serif;border:1px solid #345384;border-radius:8px;background:#182d51;color:#eaf1ff;padding:9px 12px;cursor:pointer}
+.web-btn:hover{background:#233f73}
+.web-btn-primary{background:#315da9;color:#f5f8ff;border-color:#315da9}
+.web-btn-primary:hover{background:#416cba}
+.web-btn-danger{color:#e4ecff;background:#192a49;border-color:#405b8e}
+#webModelsView button:focus-visible,.web-model-dialog button:focus-visible,.web-model-dialog input:focus-visible,.web-model-dialog select:focus-visible{outline:2px solid #668acf;outline-offset:2px}
 .web-model-dialog-backdrop{position:fixed;inset:0;background:rgba(2,11,7,.77);z-index:14000;display:none;align-items:center;justify-content:center;padding:16px}
 .web-model-dialog-backdrop.on{display:flex}
-.web-model-dialog{width:min(570px,100%);max-height:min(850px,94vh);overflow:auto;border:1px solid #283c33;background:#15221c;border-radius:14px;box-shadow:0 20px 70px #0009;color:#eaf3ed}
+.web-model-dialog{width:min(570px,100%);max-height:min(850px,94vh);overflow:auto;border:1px solid #293e65;background:#101a31;border-radius:14px;box-shadow:0 20px 70px #0009;color:#f5f8ff}
 .web-model-dialog .web-dialog-title{padding:17px 20px;font-size:15px;font-weight:700;display:flex;justify-content:space-between;align-items:center}
-.web-model-dialog .web-dialog-body{margin:0 12px;border:1px solid #21382d;border-radius:9px;padding:18px;background:#0d1612}
-.web-model-dialog .web-dialog-field{display:block;margin:0 0 14px;color:#c9e0d4;font:600 12px system-ui,sans-serif}
-.web-model-dialog input,.web-model-dialog select{width:100%;margin-top:7px;padding:10px 11px;border:1px solid #304c3d;border-radius:8px;background:#0c1511;color:#f1fbf5;outline:none;font:13px system-ui,sans-serif}
-.web-model-dialog input:focus,.web-model-dialog select:focus{border-color:#64d8a9}
-.web-model-dialog input::placeholder{color:#698375}
+.web-model-dialog .web-dialog-body{margin:0 12px;border:1px solid #29436b;border-radius:9px;padding:18px;background:#080f1e}
+.web-model-dialog .web-dialog-field{display:block;margin:0 0 14px;color:#dae6fd;font:600 12px system-ui,sans-serif}
+.web-model-dialog input,.web-model-dialog select{width:100%;margin-top:7px;padding:10px 11px;border:1px solid #345382;border-radius:8px;background:#081021;color:#f6f9ff;outline:none;font:13px system-ui,sans-serif}
+.web-model-dialog input:focus,.web-model-dialog select:focus{border-color:#6e94db}
+.web-model-dialog input::placeholder{color:#889ec6}
 .web-model-dialog .web-row{display:flex;gap:9px;align-items:center}
 .web-model-dialog .web-row>*:first-child{flex:1}
 .web-model-dialog .web-dialog-footer{padding:15px;display:flex;align-items:center;gap:9px;justify-content:flex-end;flex-wrap:wrap}
-.web-model-dialog .web-note{font:12px/1.5 system-ui,sans-serif;color:#9bb3a5;margin:6px 0 13px}
-.web-model-dialog .web-error{font:12px/1.5 system-ui,sans-serif;color:#efaaa1;margin:8px 0}
+.web-model-dialog .web-note{font:12px/1.5 system-ui,sans-serif;color:#b5c5e3;margin:6px 0 13px}
+.web-model-dialog .web-error{font:12px/1.5 system-ui,sans-serif;color:#dbe6fb;margin:8px 0}
 #webSettingsModels .web-models-grid{grid-template-columns:1fr 1fr;margin:12px 0}
 #webSettingsModels .web-model-card{padding:12px}
-#web-model-feedback{font:12px/1.4 system-ui,sans-serif;color:#93b6a5;max-width:1000px;margin:0 auto}
-#mlist .web-popup-model{display:block;width:100%;padding:10px;text-align:left;border:none;border-bottom:1px solid #284236;background:transparent;color:#e5f5e9;cursor:pointer;font:12px system-ui}
-#mlist .web-popup-model:hover{background:#1f392b}
-#mlist .web-popup-model small{display:block;color:#94b5a2;margin-top:4px}
-.web-model-legacy-notice{border:1px solid #3a4e43;border-radius:9px;background:#192820;padding:11px;margin:10px 0;font:12px/1.5 system-ui;color:#b2cabc}
+#web-model-feedback{font:12px/1.4 system-ui,sans-serif;color:#b2c5e7;max-width:1000px;margin:0 auto}
+#mlist .web-popup-model{display:block;width:100%;padding:10px;text-align:left;border:none;border-bottom:1px solid #29446e;background:transparent;color:#ebf2ff;cursor:pointer;font:12px system-ui}
+#mlist .web-popup-model:hover{background:#1e365f}
+#mlist .web-popup-model small{display:block;color:#abc0e5;margin-top:4px}
+.web-model-legacy-notice{border:1px solid #30476e;border-radius:9px;background:#131f37;padding:11px;margin:10px 0;font:12px/1.5 system-ui;color:#bed0eb}
 @media(max-width:760px){#webModelsView.on{padding:16px!important}.web-model-dialog .web-row{flex-wrap:wrap}#webSettingsModels .web-models-grid{grid-template-columns:1fr}}
