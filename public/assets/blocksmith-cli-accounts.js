@@ -83,8 +83,9 @@ function openExternal(url){
    'claude.ai','code.claude.com','developers.openai.com','chatgpt.com',
    'antigravity.google','antigravity.google.com','qoder.com','docs.qoder.com'
   ].includes(u.hostname))throw Error('Destino não autorizado.');
-  var opened=window.open(u.href,'_blank','noopener,noreferrer');
-  if(!opened)throw Error('Seu navegador bloqueou a abertura. Permita pop-ups para este site.');
+  // With noopener, window.open commonly returns null even on success.
+  // Never interpret that null as failed sign-in or blocked navigation.
+  window.open(u.href,'_blank','noopener,noreferrer');
  }catch(err){if(feedback)feedback.textContent=err.message||'Não foi possível abrir o endereço oficial.';}
 }
 function closeHub(){
