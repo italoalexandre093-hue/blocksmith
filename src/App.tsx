@@ -60,6 +60,14 @@ export default function App() {
         doc.head.appendChild(styleEl);
       }
 
+      // Enhance the hosted web preview without touching the Electron source.
+      if (doc.head && !doc.getElementById('blocksmith-web-models-style')) {
+        const modelsStyle = doc.createElement('link');
+        modelsStyle.id = 'blocksmith-web-models-style';
+        modelsStyle.rel = 'stylesheet';
+        modelsStyle.href = '/assets/blocksmith-web-models.css';
+        doc.head.appendChild(modelsStyle);
+      }
       // Global Midnight Forge skin. Loaded after the original iframe and Models
       // styles so that every web view shares one black/white/deep-blue palette.
       if (doc.head && !doc.getElementById('blocksmith-midnight-forge-style')) {
@@ -77,14 +85,6 @@ export default function App() {
         doc.body.appendChild(themeScript);
       }
 
-      // Enhance the hosted web preview without touching the Electron source.
-      if (doc.head && !doc.getElementById('blocksmith-web-models-style')) {
-        const modelsStyle = doc.createElement('link');
-        modelsStyle.id = 'blocksmith-web-models-style';
-        modelsStyle.rel = 'stylesheet';
-        modelsStyle.href = '/assets/blocksmith-web-models.css';
-        doc.head.appendChild(modelsStyle);
-      }
       if (doc.body && !doc.getElementById('blocksmith-web-models-script')) {
         const modelsScript = doc.createElement('script');
         modelsScript.id = 'blocksmith-web-models-script';
