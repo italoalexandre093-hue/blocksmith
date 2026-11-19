@@ -1,3 +1,7 @@
+/* The original embedded UI adds 3 provider tabs next to the 4 desktop connectors.
+   Hide only those redundant direct children, never the four launcher buttons,
+   the + hub button, or the existing Low / effort controls. */
+#app.app #pop .prov > .pb { display:none !important; }
 
 /* Antigravity and Qoder CLI integration launcher — Midnight Forge */
 #app.app .cli-quick-picker{display:flex;align-items:center;gap:5px;justify-content:flex-start;min-width:0;flex:1}
