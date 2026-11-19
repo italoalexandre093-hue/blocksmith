@@ -9,7 +9,7 @@ const FULLSCREEN_OVERRIDE_CSS = `
     margin: 0 !important;
     padding: 0 !important;
     overflow: hidden !important;
-    background: #05070d !important;
+    background: #080808 !important;
   }
   #vis-container {
     width: 100% !important;
@@ -115,6 +115,14 @@ export default function App() {
         proStyle.href = '/assets/blocksmith-pro-workspace.css?v=1';
         doc.head.appendChild(proStyle);
       }
+      // Final monochrome layer: no chromatic highlights, regardless of old saved themes.
+      if (doc.head && !doc.getElementById('blocksmith-monochrome-style')) {
+        const monoStyle = doc.createElement('link');
+        monoStyle.id = 'blocksmith-monochrome-style';
+        monoStyle.rel = 'stylesheet';
+        monoStyle.href = '/assets/blocksmith-monochrome.css?v=1';
+        doc.head.appendChild(monoStyle);
+      }
       if (doc.body && !doc.getElementById('blocksmith-web-history-script')) {
         const historyScript = doc.createElement('script');
         historyScript.id = 'blocksmith-web-history-script';
@@ -148,7 +156,7 @@ export default function App() {
   }, []);
 
   return (
-    <main className="fixed inset-0 w-screen h-screen overflow-hidden bg-[#05070d]">
+    <main className="fixed inset-0 w-screen h-screen overflow-hidden bg-[#080808]">
       <iframe
         ref={iframeRef}
         src={BLOCKSMITH_HTML_PATH}
