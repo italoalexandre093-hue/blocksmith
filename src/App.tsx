@@ -61,6 +61,20 @@ export default function App() {
       }
 
       // Enhance the hosted web preview without touching the Electron source.
+      if (doc.head && !doc.getElementById('blocksmith-web-models-style')) {
+        const modelsStyle = doc.createElement('link');
+        modelsStyle.id = 'blocksmith-web-models-style';
+        modelsStyle.rel = 'stylesheet';
+        modelsStyle.href = '/assets/blocksmith-web-models.css';
+        doc.head.appendChild(modelsStyle);
+      }
+      if (doc.body && !doc.getElementById('blocksmith-web-models-script')) {
+        const modelsScript = doc.createElement('script');
+        modelsScript.id = 'blocksmith-web-models-script';
+        modelsScript.src = '/assets/blocksmith-web-models.js';
+        modelsScript.async = false;
+        doc.body.appendChild(modelsScript);
+      }
       if (doc.body && !doc.getElementById('blocksmith-web-history-script')) {
         const historyScript = doc.createElement('script');
         historyScript.id = 'blocksmith-web-history-script';
