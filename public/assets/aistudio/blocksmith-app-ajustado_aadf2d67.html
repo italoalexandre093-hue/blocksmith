@@ -4758,31 +4758,8 @@ function switchTo(key){
 navs.forEach(function(n){n.addEventListener('click',function(){
   var key=n.getAttribute('data-chat');if(key)switchTo(key);else if(n.getAttribute('data-view')==='projects')toggleProjects();
 })});
-function go(){
-  var v=inp.textContent.trim();
-  if(!v&&!files.length)return;
-  var c=cur,ch=chats[c],sent=files.slice();
-  var thumbOpts=c==='thumbs'?{genre:ch.opts.genre,dimension:ch.opts.dimension,character:ch.opts.character}:null;
-  var um={cls:'u',t:v,fs:sent.map(function(f){return {name:f.name}}),opts:thumbOpts};
-  ch.m.push(um);msgs.classList.remove('still');addMsgDom(um);
-  sent.forEach(freeUrl);
-  inp.innerHTML='';files=[];ch.f=files;renderAtts();sd.className='send';
-  closeAll();ch.busy=true;sp.style.visibility='visible';
-  var md=mode;
-  ch.rt=setTimeout(function(){
-    ch.busy=false;
-    var text=md==='plan'?'Modo Plan: vou montar um plano antes de mexer em qualquer coisa. (resposta de exemplo)':'Modo Build: vou criar isso agora. (resposta de exemplo)';
-    if(thumbOpts){
-      var desc=thumbOpts.genre+', '+thumbOpts.dimension+', '+thumbOpts.character.toLowerCase();
-      text=md==='plan'?'Modo Plan: vou planejar uma thumbnail '+desc+'. (resposta de exemplo)':'Modo Build: vou criar uma thumbnail '+desc+'. (resposta de exemplo)';
-    }
-    var am={cls:'a',t:text};
-    ch.m.push(am);
-    if(cur===c){sp.style.visibility='hidden';msgs.classList.remove('still');addMsgDom(am)}
-  },1100);
-}
-sd.addEventListener('click',go);
-inp.addEventListener('keydown',function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();go()}});
+/* O chat da versão web é enviado apenas pelo adaptador blocksmith-web-models.js.
+   O antigo envio de demonstração foi desativado para evitar respostas duplicadas. */
 /* New chat: cria e abre um chat novo na lista principal */
 $('newChat').addEventListener('click',function(){
   createMainChat();
