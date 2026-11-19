@@ -17,14 +17,15 @@ test('Visual Color Studio scripts parse and preserve the existing Appearance pan
   assert.match(script, /visual-color-grid/);
 });
 
-test('Six palettes include background, panel, border and accent colors', () => {
-  for (const id of ['amethyst','cobalt','emerald','rose','amber','slate'])
+test('Three monochrome palettes include background, panel, border and white accents', () => {
+  for (const id of ['mono','graphite','contrast'])
     assert.match(script, new RegExp("id:'"+id+"'"));
   for (const token of ['--ui-bg','--ui-side','--ui-surface','--ui-raised','--ui-border','--ui-accent']) {
     assert.ok(script.includes(token), token);
     assert.ok(css.includes(token), token);
   }
-  assert.match(script, /input\.type = 'color'/);
+  assert.doesNotMatch(script, /input\.type = 'color'/);
+  assert.match(script, /Restaurar preto e branco/);
   assert.match(script, /aria-pressed/);
   assert.match(script, /visual-color-mock/);
   assert.match(script, /visualColorStatus/);
@@ -40,7 +41,8 @@ test('Chat, models, sidebar, settings and modal colors use the selected visual t
 
 test('Theme preferences persist locally without modifying provider credentials or chat state', () => {
   assert.match(script, /localStorage\.setItem\(storageKey/);
-  assert.match(script, /validHex/);
+  assert.match(script, /blocksmith.monochrome.v2/);
+  assert.doesNotMatch(script, /blocksmith.visual-color-studio.v1/);
   assert.match(script, /readSaved\(\)/);
   assert.match(script, /appearanceReset/);
   assert.doesNotMatch(script, /\/api\/ai\//);
@@ -51,6 +53,8 @@ test('Theme preferences persist locally without modifying provider credentials o
 test('Color Studio styles load after Midnight Forge and script is injected into iframe', () => {
   assert.ok(app.includes('blocksmith-ui-colors.css?v=1'));
   assert.ok(app.includes('blocksmith-ui-colors.js?v=1'));
+  assert.ok(app.includes('blocksmith-monochrome.css?v=1'));
+  assert.ok(app.indexOf('blocksmith-pro-workspace-style') < app.indexOf('blocksmith-monochrome-style'));
   assert.ok(app.indexOf('blocksmith-midnight-forge-style') < app.indexOf('blocksmith-ui-colors-style'));
   assert.ok(app.indexOf('blocksmith-cli-accounts-script') < app.indexOf('blocksmith-ui-colors-script'));
 });
