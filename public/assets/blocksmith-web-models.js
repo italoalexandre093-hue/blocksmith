@@ -43,6 +43,7 @@ var nav=node('div','nav','');nav.id='web-models-nav';nav.tabIndex=0;nav.setAttri
 nav.innerHTML='<i class="ti ti-robot" aria-hidden="true"></i><span>Models</span>';
 var navlist=$('projectTree')?.parentElement;
 if(navlist)navlist.insertBefore(nav,navlist.firstChild);
+['tabClaude','tabOpenai','tabCompat'].forEach(function(id){var tab=$(id);if(tab){tab.style.display='none';tab.setAttribute('aria-hidden','true');}});
 var rp=$('rp'),view=node('section','panel-view');view.id='webModelsView';
 view.innerHTML='<div class="web-header"><div><h2>Models</h2><p>Gerencie seus modelos personalizados e suas próprias chaves de API.</p></div><div><button type="button" class="web-btn web-btn-primary" id="webModelsAddTop">+ Add model</button><button type="button" class="web-btn" id="webModelsBack" style="margin-left:8px">Voltar</button></div></div><div id="web-model-feedback" role="status"></div><div id="webModelsContent"></div>';
 rp.insertBefore(view,$('settingsView'));
@@ -92,7 +93,7 @@ function addId(value){
 function updateProvider(){
  var p=providerSelect.value,custom=p==='compatible'||p==='anthropic-compatible';
  $('webBaseRow').style.display=custom?'block':'none';
- $('webBaseUrl').value=custom?$('webBaseUrl').value:BASES[p]||'';
+ $('webBaseUrl').value=custom?'':BASES[p]||'';
  $('webApiTypeRow').style.display=p==='anthropic'||p==='anthropic-compatible'?'none':'block';
  $('webApiType').value=p==='anthropic'||p==='anthropic-compatible'?'anthropic':'chat';
  $('webAvailable').style.display='none';$('webAvailable').innerHTML='<option value="">Selecione...</option>';
@@ -193,6 +194,7 @@ $('webModelForm').addEventListener('submit',function(e){
   if(!ids.length)throw Error('Adicione pelo menos um ID de modelo.');
   if(ids.some(function(x){return x.length>256;}))throw Error('ID muito longo.');
   var added=0;
+  if(models.length+ids.length>200)throw Error('Limite de 200 modelos atingido.');
   ids.forEach(function(modelId){
    var item={provider:c.provider,apiType:c.apiType,baseUrl:c.baseUrl,modelId:modelId};
    if(!models.some(function(m){return modelKey(m)===modelKey(item);})){models.push(item);added++;}
@@ -300,7 +302,7 @@ desktopButtons.forEach(function(id){
   if(el)el.textContent='Esta instalação exige o aplicativo Blocksmith Desktop no Windows. O Railway não executa ferramentas locais.';
   if(id==='plusBtn')window.alert('O gerenciador de CLI está disponível no Blocksmith Desktop Windows.');
  },true);
- if(id!=='plusBtn'){b.setAttribute('title','Requer Blocksmith Desktop Windows');}
+ if(id!=='plusBtn'){b.setAttribute('title','Requer Blocksmith Desktop Windows');var label=b.querySelector('span');if(label)label.textContent='Somente desktop';}
 });
 /* Persist non-sensitive preferences. API keys are deliberately excluded. */
 var PREF='blocksmith-web-ui-preferences-v1';
@@ -321,5 +323,11 @@ function savePrefs(){
 document.querySelectorAll('[data-theme-choice]').forEach(function(e){e.addEventListener('click',function(){setTimeout(savePrefs,0);});});
 $('savePrompt')?.addEventListener('click',savePrefs);
 document.addEventListener('change',function(e){if(e.target.matches&&e.target.matches('.setting-check'))savePrefs();},true);
+['clis','roblox','blender','plugins'].forEach(function(p){
+ var area=document.querySelector('[data-settings-pane="'+p+'"]');
+ if(!area)return;
+ var n=node('div','web-model-legacy-notice','Funcionalidades que instalam aplicativos, conectam Roblox Studio/Blender ou executam MCP local exigem o Blocksmith Desktop no Windows. Aqui os botões de instalação não simulam sucesso.');
+ area.insertBefore(n,area.firstChild);
+});
 renderModels();updateChip();notice('Modelos disponíveis nesta instalação web. Escolha um para habilitar respostas reais.',false);
 })();
