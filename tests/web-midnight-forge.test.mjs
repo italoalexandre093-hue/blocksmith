@@ -52,7 +52,8 @@ test('appearance palette initializes blue without altering chat state', () => {
   const root = { setAttribute(name, val) { attrs[name] = val; } };
   const doc = {
     getElementById(name) { return name === 'app' ? root : null; },
-    querySelectorAll() { return []; }
+    querySelectorAll() { return []; },
+    querySelector() { return null; }
   };
   vm.runInNewContext(setup, { window: win, document: doc, Array, String, queueMicrotask });
   assert.equal(accentCalls.at(-1), '#315DA9');
