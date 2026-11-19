@@ -1,6 +1,6 @@
 {
   "product": "Blocksmith Studio",
-  "latestDesktopSourceVersion": "0.11.1",
+  "latestDesktopSourceVersion": "0.12.12",
   "channel": "development",
   "platform": "Windows x64",
   "runtime": "Electron",
@@ -8,17 +8,49 @@
   "hostedOnRailway": false,
   "installerAvailableOnRailway": false,
   "sourceUploadedToGitHub": false,
+  "githubPublication": "Release metadata and integration instructions only; desktop source ZIP delivered in the ChatGPT conversation (not hosted by GitHub or Railway).",
+  "providers": [
+    {
+      "id": "compatible",
+      "name": "OpenAI Compatible",
+      "baseUrl": "user-defined",
+      "requiresApiKey": false
+    },
+    {
+      "id": "openrouter",
+      "name": "OpenRouter",
+      "baseUrl": "https://openrouter.ai/api/v1",
+      "requiresApiKey": true
+    },
+    {
+      "id": "nightrouter",
+      "name": "NightRouter.ai",
+      "baseUrl": "https://api.nightrouter.ai/v1",
+      "requiresApiKey": true
+    },
+    {
+      "id": "radox",
+      "name": "Radox AI",
+      "baseUrl": "https://radoxai.com/v1",
+      "requiresApiKey": true
+    }
+  ],
+  "activeSkills": 24,
+  "nativeToolCount": 20,
+  "automatedTestsPassed": 151,
   "features": [
+    "Independent encrypted API key/model per provider",
+    "List models from preset /models endpoint",
+    "Chat completions via selected provider",
     "MCP connection management",
     "Explicit approval for AI-initiated MCP calls",
-    "Plan approval and task queue",
-    "Script diff and restore checkpoints",
-    "Project skills",
-    "Playtest reports",
-    "Diagnostic checks",
+    "Agent plans and activity journal",
+    "24 active project skills",
+    "Roblox Studio plugin and local bridge",
+    "Blender integration",
     "Rojo integration",
-    "Asset library"
+    "Build Doctor (read-only)"
   ],
-  "notes": "This is release metadata for a separately packaged desktop app. The 0.11.1 desktop source ZIP is not yet stored in this GitHub repository; build it locally with Codex. Railway hosts only the existing web interface.",
-  "instructions": "docs/BLOCKSMITH_DESKTOP_0.11.1.md"
+  "notes": "Version information for separately packaged Blocksmith Electron source. GitHub/Railway host the existing web frontend and release metadata only. No real third-party provider keys were used in tests. The desktop ZIP has NOT been uploaded to GitHub; download it in the original ChatGPT conversation.",
+  "instructions": "docs/BLOCKSMITH_DESKTOP_0.12.12.md"
 }
