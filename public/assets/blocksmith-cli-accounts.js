@@ -153,7 +153,18 @@ overlay.addEventListener('keydown',function(e){
  if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}
  else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
 });
-/* Connector launchers belong in Settings → CLIs, not in the AI model picker. */
+function addQuickButtons(){
+ var bar=$('pop')&&$('pop').querySelector('.prov');
+ var plus=$('plusBtn');if(!bar||!plus)return;
+ var wrap=el('div','cli-quick-picker');wrap.setAttribute('role','group');wrap.setAttribute('aria-label','CLI tools');
+ keys.forEach(function(key){
+  var button=el('button','cli-quick-brand');button.type='button';button.setAttribute('data-tool',key);button.setAttribute('data-short',catalog[key].title);
+  button.setAttribute('aria-label','Configurar '+catalog[key].title);button.title='Configurar '+catalog[key].title;
+  button.appendChild(brand(key));button.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();showHub(key);});
+  wrap.appendChild(button);
+ });
+ bar.insertBefore(wrap,plus);
+}
 function addSettingsCards(){
  var pane=document.querySelector('[data-settings-pane="clis"]');if(!pane)return;
  var old=Array.from(pane.querySelectorAll('.install-card'));
@@ -173,7 +184,7 @@ function addSettingsCards(){
  var note=el('div','web-model-legacy-notice','Antigravity e Qoder: faça login no aplicativo oficial Windows, sem instalar CLI. O site Railway não consegue reutilizar essa sessão automaticamente no chat; isso exige integração local ou API oficialmente autorizada.');
  pane.appendChild(note);
 }
-addSettingsCards();
+addQuickButtons();addSettingsCards();
 /* Intercept legacy controls before demo installers can claim success. */
 document.addEventListener('click',function(e){
  var target=e.target.closest&&e.target.closest('#plusBtn,#cliInstallClaude,#cliInstallCodex');
