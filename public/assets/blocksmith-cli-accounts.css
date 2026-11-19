@@ -1,0 +1,61 @@
+
+/* Antigravity and Qoder CLI integration launcher — Midnight Forge */
+#app.app .cli-quick-picker{display:flex;align-items:center;gap:5px;justify-content:flex-start;min-width:0;flex:1}
+#app.app .cli-quick-brand{
+  border:1px solid transparent;background:transparent;color:#e8f1ff;
+  border-radius:9px;width:37px;height:37px;padding:7px;display:grid;place-items:center;
+  cursor:pointer;position:relative;transition:background .14s,border-color .14s;
+}
+#app.app .cli-quick-brand:hover,#app.app .cli-quick-brand:focus-visible{background:#182f56;border-color:#35578f;outline:none}
+#app.app .cli-quick-brand img,#app.app .cli-quick-brand svg{width:23px;height:23px;object-fit:contain;display:block}
+#app.app .cli-quick-brand[data-tool="antigravity"] img{width:25px;height:25px}
+#app.app .cli-quick-brand::after{content:attr(data-short);pointer-events:none;position:absolute;bottom:-17px;font:500 10px system-ui;color:#92a8cb;white-space:nowrap;display:none}
+#app.app .cli-quick-brand:hover::after{display:block}
+#app.app .install-card.blocksmith-cli-new{border-color:#2b4779!important}
+#app.app .install-card.blocksmith-cli-new .install-ic{display:grid;place-items:center;width:36px;height:36px;flex-shrink:0;background:#101a32;border-radius:9px}
+#app.app .install-card.blocksmith-cli-new .install-ic img{width:25px;height:25px;display:block;object-fit:contain}
+#app.app .install-card.blocksmith-cli-new .install-ic .qoder-logo{width:25px;height:25px}
+#app.app .install-card.blocksmith-cli-new button{border:1px solid #385d9a;background:#1b3664;color:#fff;border-radius:9px;padding:9px 13px;cursor:pointer}
+#app.app .install-card.blocksmith-cli-new button:hover{background:#294f8e}
+.blocksmith-tool-overlay{display:none;position:fixed;inset:0;background:rgba(1,4,12,.82);backdrop-filter:blur(11px);align-items:center;justify-content:center;z-index:99999;padding:20px;box-sizing:border-box}
+.blocksmith-tool-overlay.open{display:flex}
+.blocksmith-tool-dialog{width:min(815px,100%);max-height:min(790px,94vh);overflow:auto;background:linear-gradient(165deg,#101c34,#09101f);border:1px solid #324f7c;border-radius:18px;box-shadow:0 38px 115px rgba(0,0,0,.72);color:#eff5ff;font:13px/1.55 system-ui,'Segoe UI',sans-serif}
+.blocksmith-tool-head{padding:22px 24px 16px;border-bottom:1px solid #243c61;display:flex;align-items:flex-start;gap:12px;justify-content:space-between}
+.blocksmith-tool-head strong{font-size:20px;letter-spacing:-.04em;color:#fff}
+.blocksmith-tool-head p{margin:5px 0 0;color:#aebfdb;font-size:12px}
+.blocksmith-tool-close{border:1px solid #37517c;background:#172946;color:#ecf4ff;border-radius:9px;width:32px;height:32px;cursor:pointer}
+.blocksmith-tool-body{padding:20px 24px 23px;display:grid;grid-template-columns:240px minmax(0,1fr);gap:22px}
+.blocksmith-tool-list{display:flex;flex-direction:column;gap:9px}
+.blocksmith-tool-choice{display:flex;gap:11px;width:100%;align-items:center;text-align:left;color:#eaf2ff;background:#101d34;border:1px solid #283f66;padding:12px;border-radius:11px;cursor:pointer}
+.blocksmith-tool-choice.selected{background:#1b376a;border-color:#567bc2;box-shadow:inset 3px 0 #83a8f3}
+.blocksmith-tool-choice:hover{background:#203e71;border-color:#4269a9}
+.blocksmith-tool-choice img,.blocksmith-tool-choice svg{width:30px;height:30px;object-fit:contain;flex-shrink:0}
+.blocksmith-tool-choice strong{font-size:12.8px;font-weight:650;display:block}
+.blocksmith-tool-choice small{font-size:10.5px;color:#a6badb;display:block}
+.blocksmith-tool-details{min-width:0;background:#0b1428;border:1px solid #253e68;border-radius:13px;padding:21px}
+.blocksmith-tool-heading{display:flex;gap:12px;align-items:center;margin-bottom:12px}
+.blocksmith-tool-heading img,.blocksmith-tool-heading svg{width:38px;height:38px;object-fit:contain}
+.blocksmith-tool-heading h3{color:white;margin:0;font-size:18px}
+.blocksmith-tool-description{color:#b7c8e3;line-height:1.55;margin:0 0 12px}
+.blocksmith-tool-tag{display:inline-block;border:1px solid #395987;background:#172c52;border-radius:6px;padding:3px 8px;color:#d7e7ff;font-size:10.5px}
+.blocksmith-tool-steps{padding:0;margin:18px 0 12px;list-style:none;counter-reset:steps}
+.blocksmith-tool-steps li{counter-increment:steps;display:flex;gap:10px;margin-bottom:11px;color:#dbe7fa;align-items:flex-start}
+.blocksmith-tool-steps li::before{content:counter(steps);width:23px;height:23px;flex-shrink:0;display:grid;place-items:center;border-radius:7px;background:#274983;border:1px solid #4b70ad;color:#fff;font-weight:700;font-size:11px}
+.blocksmith-tool-code{background:#050b17;border:1px solid #2a426b;border-radius:10px;padding:12px;display:flex;align-items:center;gap:8px;margin:12px 0}
+.blocksmith-tool-code code{flex:1;color:#f1f6ff;overflow-wrap:anywhere;white-space:pre-wrap;font:11.5px/1.55 ui-monospace,'Cascadia Code',Consolas,monospace}
+.blocksmith-tool-copy,.blocksmith-tool-button{border:1px solid #34588d;border-radius:9px;padding:9px 12px;cursor:pointer;background:#172c51;color:#eff5ff;font:600 12px system-ui}
+.blocksmith-tool-copy:hover,.blocksmith-tool-button:hover{background:#21437e}
+.blocksmith-tool-button.main{background:linear-gradient(140deg,#305fac,#214a87);border-color:#5881c7;color:#fff}
+.blocksmith-tool-button.main:hover{background:#3d72c6}
+.blocksmith-tool-actions{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin-top:17px}
+.blocksmith-tool-alert{color:#b2c7e6;border:1px solid #2e4875;background:#132542;border-radius:9px;padding:10px 12px;font-size:11px;margin-top:13px}
+.blocksmith-tool-feedback{min-height:18px;color:#bed5f9;margin-top:12px;font-size:11.5px}
+.blocksmith-tool-overlay :is(button,a):focus-visible{outline:2px solid #85a9f0;outline-offset:2px}
+@media(max-width:700px){
+ .blocksmith-tool-dialog{max-height:96vh}
+ .blocksmith-tool-body{grid-template-columns:1fr;padding:14px;gap:14px}
+ .blocksmith-tool-list{flex-direction:row;overflow-x:auto}
+ .blocksmith-tool-choice{min-width:160px;flex:1}
+ .blocksmith-tool-details{padding:15px}
+ .blocksmith-tool-head{padding:17px}
+}
