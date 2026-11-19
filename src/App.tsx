@@ -99,6 +99,14 @@ export default function App() {
         toolsStyle.href = '/assets/blocksmith-cli-accounts.css?v=1';
         doc.head.appendChild(toolsStyle);
       }
+      // Color Studio overrides fixed Midnight colors using a live visual palette.
+      if (doc.head && !doc.getElementById('blocksmith-ui-colors-style')) {
+        const colorStyle = doc.createElement('link');
+        colorStyle.id = 'blocksmith-ui-colors-style';
+        colorStyle.rel = 'stylesheet';
+        colorStyle.href = '/assets/blocksmith-ui-colors.css?v=1';
+        doc.head.appendChild(colorStyle);
+      }
       if (doc.body && !doc.getElementById('blocksmith-web-history-script')) {
         const historyScript = doc.createElement('script');
         historyScript.id = 'blocksmith-web-history-script';
@@ -111,6 +119,13 @@ export default function App() {
         toolsScript.src = '/assets/blocksmith-cli-accounts.js?v=1';
         toolsScript.async = false;
         doc.body.appendChild(toolsScript);
+      }
+      if (doc.body && !doc.getElementById('blocksmith-ui-colors-script')) {
+        const colorScript = doc.createElement('script');
+        colorScript.id = 'blocksmith-ui-colors-script';
+        colorScript.src = '/assets/blocksmith-ui-colors.js?v=1';
+        colorScript.async = false;
+        doc.body.appendChild(colorScript);
       }
     } catch {
       // Ignore cross-origin access errors if ever served from a different origin

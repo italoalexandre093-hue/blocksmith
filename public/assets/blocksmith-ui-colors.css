@@ -1,0 +1,85 @@
+/*
+ * Blocksmith Color Studio — overrides the fixed Midnight Forge hue using
+ * named, user-selectable palettes. Scoped to appearance; no chat or API data.
+ */
+#app.app, body { --ui-bg:#0b0716; --ui-side:#130e27; --ui-surface:#1a1430; --ui-raised:#241b43; --ui-border:#403167; --ui-accent:#8055d8; --ui-accent-rgb:128,85,216; }
+
+/* Main UI surfaces take the active palette, not the original forced blue. */
+html:has(#app.app), body:has(#app.app), #vis-container:has(#app.app) { background:var(--ui-bg) !important; }
+#app.app { background:var(--ui-bg) !important; border-color:var(--ui-border) !important; color:#f8f7ff !important; }
+#app.app .sd { background:linear-gradient(154deg,var(--ui-side),var(--ui-bg)) !important; border-right:1px solid var(--ui-border) !important; }
+#app.app .rp { background:radial-gradient(ellipse 65% 45% at 91% 0%,rgba(var(--ui-accent-rgb),.12),transparent 73%),var(--ui-bg) !important; }
+#app.app .mark { background:linear-gradient(140deg,var(--ui-accent),var(--ui-raised)) !important; border-color:var(--ui-border) !important; box-shadow:0 8px 23px rgba(var(--ui-accent-rgb),.14) !important; }
+#app.app .newc { background:linear-gradient(120deg,var(--ui-raised),var(--ui-surface)) !important; border-color:var(--ui-border) !important; }
+#app.app .newc:hover, #app.app .settings-btn:hover { background:var(--ui-raised) !important; border-color:var(--ui-accent) !important; }
+#app.app .nav:hover, #app.app .tree-chat:hover, #app.app .tree-row:hover, #app.app .tgl:hover, #app.app .iconb:hover { background:var(--ui-raised) !important; }
+#app.app .nav.act, #app.app .tree-chat.act { background:linear-gradient(100deg,color-mix(in srgb,var(--ui-accent) 28%,var(--ui-surface)),var(--ui-side)) !important; box-shadow:inset 3px 0 var(--ui-accent) !important; color:#fff !important; }
+#app.app .settings-btn { background:var(--ui-surface) !important; border-color:var(--ui-border) !important; }
+#app.app .u { background:linear-gradient(150deg,var(--ui-raised),var(--ui-surface)) !important; border-color:var(--ui-border) !important; }
+#app.app .comp { background:linear-gradient(160deg,var(--ui-surface),var(--ui-side)) !important; border-color:var(--ui-border) !important; }
+#app.app .comp:focus-within { border-color:var(--ui-accent) !important; box-shadow:0 0 0 2px rgba(var(--ui-accent-rgb),.12) !important; }
+#app.app .send { background:linear-gradient(150deg,var(--ui-accent),color-mix(in srgb,var(--ui-accent),#000 22%)) !important; color:#fff !important; box-shadow:0 6px 20px rgba(var(--ui-accent-rgb),.22) !important; }
+#app.app .send:hover, #app.app .send.on { background:color-mix(in srgb,var(--ui-accent),#fff 13%) !important; }
+#app.app .settings-tabs { background:var(--ui-side) !important; border-color:var(--ui-border) !important; }
+#app.app .settings-tab:hover { background:var(--ui-raised) !important; }
+#app.app .settings-tab.act { background:linear-gradient(100deg,var(--ui-raised),var(--ui-surface)) !important; box-shadow:inset 3px 0 var(--ui-accent) !important; }
+#app.app .setting-row, #app.app .settings-tool, #app.app .settings-group { border-color:var(--ui-border) !important; }
+#app.app .settings-input, #app.app .settings-textarea, #app.app .tree-name-input,
+#app.app input[type="text"], #app.app input[type="password"], #app.app textarea, #app.app select { background:var(--ui-side) !important; border-color:var(--ui-border) !important; }
+#app.app input:focus, #app.app select:focus, #app.app textarea:focus { border-color:var(--ui-accent) !important; }
+#app.app input[type="checkbox"], #app.app input[type="range"] { accent-color:var(--ui-accent) !important; }
+#app.app .install-card, #app.app .settings-card { background:linear-gradient(155deg,var(--ui-surface),var(--ui-side)) !important; border-color:var(--ui-border) !important; }
+#app.app .install-btn, #app.app .panel-close, #app.app .seg-btn, #app.app .theme-option, #app.app .text-size-btn { background:var(--ui-surface) !important; border-color:var(--ui-border) !important; }
+#app.app .install-btn:hover, #app.app .panel-close:hover, #app.app .seg-btn:hover, #app.app .theme-option:hover { background:var(--ui-raised) !important; }
+#app.app .seg-btn.act, #app.app .theme-option.act { background:var(--ui-raised) !important; border-color:var(--ui-accent) !important; }
+#app.app .ap-preview, #app.app .preview-pane { background:linear-gradient(125deg,var(--ui-side),var(--ui-raised)) !important; border-color:var(--ui-border) !important; }
+#app.app .pop, #app.app .mpop, #app.app .apop, #app.app .tree-menu, #app.app .cli-manager, #app.app .menu, #app.app .dropdown { background:var(--ui-surface) !important; border-color:var(--ui-border) !important; }
+#app.app .orow:hover, #app.app .pop button:hover, #app.app .mpop button:hover { background:var(--ui-raised) !important; }
+#app.app .cli-manager .cli-card, #app.app .cli-manager .install-card { background:var(--ui-surface) !important; border-color:var(--ui-border) !important; }
+#app #webModelsView.on { background:radial-gradient(ellipse at 89% 0%,rgba(var(--ui-accent-rgb),.12),transparent 70%),var(--ui-bg) !important; }
+#app .web-model-card { background:linear-gradient(155deg,var(--ui-surface),var(--ui-side)) !important; border-color:var(--ui-border) !important; }
+#app .web-model-card:hover { border-color:var(--ui-accent) !important; }
+#app .web-model-legacy-notice { background:var(--ui-surface) !important; border-color:var(--ui-border) !important; }
+#app .web-btn, body .web-model-dialog .web-btn { background:var(--ui-raised) !important; border-color:var(--ui-border) !important; }
+#app .web-btn-primary, body .web-model-dialog .web-btn-primary { background:linear-gradient(140deg,var(--ui-accent),color-mix(in srgb,var(--ui-accent),#000 20%)) !important; border-color:var(--ui-accent) !important; color:#fff !important; }
+#app .web-btn:hover, body .web-model-dialog .web-btn:hover { border-color:var(--ui-accent) !important; }
+#app #mlist .web-popup-model { background:var(--ui-surface) !important; border-color:var(--ui-border) !important; }
+#app #mlist .web-popup-model:hover { background:var(--ui-raised) !important; }
+body .web-model-dialog { background:var(--ui-side) !important; border-color:var(--ui-border) !important; }
+body .web-model-dialog .web-dialog-title { background:var(--ui-surface) !important; border-color:var(--ui-border) !important; }
+body .web-model-dialog .web-dialog-body, body .web-model-dialog .web-dialog-footer { background:var(--ui-side) !important; border-color:var(--ui-border) !important; }
+body .web-model-dialog input, body .web-model-dialog select { background:var(--ui-bg) !important; border-color:var(--ui-border) !important; }
+body .blocksmith-tool-dialog, body .blocksmith-tool-details { background:var(--ui-side) !important; border-color:var(--ui-border) !important; }
+body .blocksmith-tool-choice { background:var(--ui-surface) !important; border-color:var(--ui-border) !important; }
+body .blocksmith-tool-choice.selected { background:var(--ui-raised) !important; border-color:var(--ui-accent) !important; box-shadow:inset 3px 0 var(--ui-accent) !important; }
+body .blocksmith-tool-button.main { background:var(--ui-accent) !important; border-color:var(--ui-accent) !important; }
+#app.app :is(button,[role="button"],input,select,textarea):focus-visible,
+body .web-model-dialog :is(button,input,select):focus-visible { outline-color:var(--ui-accent) !important; }
+
+/* Color Studio: interactive, keyboard-accessible miniature UI previews. */
+#app.app .visual-color-studio { margin:18px 0 22px; padding:19px; border:1px solid var(--ui-border); background:linear-gradient(150deg,var(--ui-surface),var(--ui-side)); border-radius:16px; box-shadow:0 12px 30px rgba(0,0,0,.13); }
+#app.app .visual-color-heading { display:flex; gap:10px; align-items:center; justify-content:space-between; flex-wrap:wrap; margin-bottom:5px; }
+#app.app .visual-color-title { font-size:15px; font-weight:750; color:#fff; letter-spacing:-.02em; margin:0; }
+#app.app .visual-color-hint { color:#b8bfd2; font-size:12px; margin:0 0 14px; line-height:1.55; }
+#app.app .visual-color-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(126px,1fr)); gap:10px; }
+#app.app .visual-color-choice { display:flex; flex-direction:column; gap:8px; padding:9px; border:1px solid var(--ui-border); border-radius:12px; color:#f4f4fa; font:600 12px Inter,"Segoe UI",sans-serif; cursor:pointer; background:var(--ui-side); text-align:left; transition:transform .12s ease,border-color .12s ease; }
+#app.app .visual-color-choice:hover { border-color:var(--ui-accent) !important; transform:translateY(-2px); }
+#app.app .visual-color-choice[aria-pressed="true"] { border-color:var(--ui-accent) !important; box-shadow:0 0 0 2px rgba(var(--ui-accent-rgb),.22); }
+#app.app .visual-color-mock { display:flex; width:100%; height:60px; border-radius:7px; overflow:hidden; background:var(--sample-bg); border:1px solid rgba(255,255,255,.11); }
+#app.app .visual-color-mock-side { width:30%; background:var(--sample-side); display:flex; flex-direction:column; gap:5px; padding:9px 5px; }
+#app.app .visual-color-mock-side i { display:block; width:80%; height:4px; border-radius:4px; background:rgba(255,255,255,.23); }
+#app.app .visual-color-mock-side i:first-child { background:var(--sample-accent); width:56%; }
+#app.app .visual-color-mock-main { flex:1; padding:10px 7px; display:flex; flex-direction:column; justify-content:flex-end; gap:5px; }
+#app.app .visual-color-mock-main i { display:block; width:78%; height:5px; border-radius:4px; background:var(--sample-side); }
+#app.app .visual-color-mock-main b { width:50%; height:9px; border-radius:5px; background:var(--sample-accent); align-self:flex-end; }
+#app.app .visual-color-choice-foot { display:flex; justify-content:space-between; align-items:center; gap:6px; }
+#app.app .visual-color-dot { display:inline-block; flex-shrink:0; width:13px; height:13px; border-radius:50%; background:var(--sample-accent); border:1px solid rgba(255,255,255,.2); }
+#app.app .visual-color-tools { display:flex; align-items:center; flex-wrap:wrap; gap:10px; margin-top:15px; border-top:1px solid var(--ui-border); padding-top:13px; }
+#app.app .visual-color-tools label { font-weight:650; font-size:12px; color:#e5e4f4; }
+#app.app .visual-color-input { width:39px; height:34px; padding:3px; border-radius:8px; border:1px solid var(--ui-border); background:var(--ui-side); cursor:pointer; }
+#app.app .visual-color-hex { color:#c8c4d4; font:600 11px ui-monospace,Consolas,monospace; letter-spacing:.03em; }
+#app.app .visual-color-reset { border:1px solid var(--ui-border); border-radius:8px; background:var(--ui-raised); color:#f7f7fb; font:600 12px Inter,"Segoe UI",sans-serif; padding:8px 12px; cursor:pointer; margin-left:auto; }
+#app.app .visual-color-reset:hover { border-color:var(--ui-accent) !important; }
+#app.app .visual-color-status { font-size:11px; color:#bac8dc; min-height:16px; margin-top:7px; }
+@media(max-width:600px) { #app.app .visual-color-studio { padding:12px; } #app.app .visual-color-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } #app.app .visual-color-reset { margin-left:0; } }
+@media(prefers-reduced-motion:reduce) { #app.app .visual-color-choice { transition:none; } #app.app .visual-color-choice:hover { transform:none; } }
