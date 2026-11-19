@@ -14,9 +14,7 @@ test('CLI account extension parses and includes four supported local tools',()=>
  for(const name of ["claude","codex","antigravity","qoder"])
   assert.ok(ui.includes(name+':{'),name);
  assert.ok(ui.includes("keys=['claude','codex','antigravity','qoder']"));
- assert.ok(ui.includes("addSettingsCards();"));
- assert.ok(!ui.includes("addQuickButtons();"));
- assert.ok(!ui.includes("cli-quick-picker"));
+ assert.ok(ui.includes("addQuickButtons();addSettingsCards();"));
 });
 test('Brand icon SVG files are real, self-hosted vectors and license retained',()=>{
  for(const [name,asset] of [['antigravity',antigravity],['qoder',qoder]]){
@@ -54,10 +52,10 @@ test('Never claim a local CLI is connected or installed without verification',()
  assert.doesNotMatch(ui,/cliInstalled\[key\]\s*=\s*true/);
  assert.doesNotMatch(ui,/eval\(/);
 });
-test('Old mocked installer buttons are superseded and Models picker has no CLI quick icons',()=>{
+test('Old mocked installer buttons are superseded and Models untouched',()=>{
  assert.ok(ui.includes("e.stopImmediatePropagation();showHub(key);"));
  assert.ok(ui.includes("#plusBtn,#cliInstallClaude,#cliInstallCodex"));
- assert.ok(ui.includes("data-cli-connector"));
+ assert.ok(ui.includes("data-tool"));
  assert.ok(ui.includes("cliConfigure-"));
  assert.ok(app.includes('blocksmith-web-history.js'));
  assert.ok(app.includes('blocksmith-web-models.js'));
