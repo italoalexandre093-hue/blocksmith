@@ -9,16 +9,16 @@
   if (!root) return;
 
   var tones = [
-    ['#183565', 'Deep Navy'],
-    ['#244783', 'Indigo Navy'],
-    ['#315DA9', 'Midnight Blue'],
-    ['#3D66AF', 'Blue Steel'],
-    ['#294F90', 'Atlantic'],
-    ['#152E58', 'Obsidian Blue'],
-    ['#355A97', 'Cobalt Navy'],
-    ['#284576', 'Ink Blue'],
-    ['#4367A6', 'Glacier Navy'],
-    ['#1E407B', 'Oxford Blue']
+    ['#FFFFFF', 'Branco'],
+    ['#F2F2F2', 'Branco suave'],
+    ['#E6E6E6', 'Prata clara'],
+    ['#D9D9D9', 'Prata'],
+    ['#CCCCCC', 'Cinza claro'],
+    ['#BFBFBF', 'Cinza neutro'],
+    ['#AAAAAA', 'Cinza médio'],
+    ['#999999', 'Cinza acetinado'],
+    ['#888888', 'Grafite claro'],
+    ['#777777', 'Grafite']
   ];
 
   // The original palette uses mutable [hex, label] pairs. Its button
@@ -38,12 +38,12 @@
     var item = tones[index % tones.length];
     button.setAttribute('data-accent-choice', item[0]);
     button.setAttribute('title', item[1]);
-    button.setAttribute('aria-label', 'Azul: ' + item[1]);
+    button.setAttribute('aria-label', 'Monocromático: ' + item[1]);
     var dot = button.querySelector('span');
     if (dot) dot.style.background = item[0];
   });
 
-  var themeNames = { dark: 'Midnight', white: 'Obsidian', gray: 'Navy' };
+  var themeNames = { dark: 'Preto', white: 'Preto e branco', gray: 'Grafite' };
   document.querySelectorAll('[data-theme-choice]').forEach(function (button) {
     var next = themeNames[button.getAttribute('data-theme-choice')];
     if (!next) return;
@@ -58,17 +58,17 @@
     var title = accentSection.closest('.settings-group');
     var heading = title && title.querySelector('.settings-group-title');
     var description = title && title.querySelector('.settings-group-sub');
-    if (heading) heading.textContent = 'Tons de azul';
-    if (description) description.textContent = 'Selecione uma variação azul-marinho da identidade Midnight Forge.';
+    if (heading) heading.textContent = 'Destaques neutros';
+    if (description) description.textContent = 'Tons de branco e cinza que mantêm a interface monocromática.';
   }
 
-  var applyPrimaryBlue = function () {
+  var applyPrimaryWhite = function () {
     if (typeof window.setAccent === 'function') {
-      window.setAccent('#315DA9');
+      window.setAccent('#FFFFFF');
     } else {
-      root.style.setProperty('--ac', '#315DA9');
-      root.style.setProperty('--ac-rgb', '49,93,169');
-      root.style.setProperty('--ac2', '#527BC5');
+      root.style.setProperty('--ac', '#FFFFFF');
+      root.style.setProperty('--ac-rgb', '255,255,255');
+      root.style.setProperty('--ac2', '#F2F2F2');
     }
   };
 
@@ -76,12 +76,12 @@
   // Restore our navy primary after the existing action finishes.
   var reset = document.getElementById('appearanceReset');
   if (reset) reset.addEventListener('click', function () {
-    queueMicrotask(applyPrimaryBlue);
+    queueMicrotask(applyPrimaryWhite);
   });
 
-  applyPrimaryBlue();
+  applyPrimaryWhite();
 
   // Preserve user theme controls; all three choices now remain inside
   // the same black/white/navy family through the design CSS.
-  root.setAttribute('data-design', 'midnight-forge');
+  root.setAttribute('data-design', 'monochrome');
 })();
